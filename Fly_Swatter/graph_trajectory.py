@@ -5,23 +5,38 @@ from Fly_Swatter.Fly_Swatter import target
 import numpy as np
 import matplotlib.pyplot as plt
 
-def graph_solution(missile_speed, phi, theta):
+def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time):
 
-  x, y, z = target.calculate_ballistics_missile(missile_speed, phi, theta)
+  mx, my, mz = target.calculate_ballistics_missile(missile_speed, phi, theta)
+  tx, ty, tz = xyz_target
+  dtx, dty, dtz = deltaXYZ_target
+
   fig = plt.figure()
   ax = plt.axes(projection='3d')
 
-  ax.set_xlim(xmin=-.5, xmax=.5)a
-  ax.set_ylim(ymin=-.5, ymax=.5)
-  ax.set_zlim(zmin=0, zmax=2)
+  #ax.set_xlim(xmin=-2, xmax=2)
+  #ax.set_ylim(ymin=-2, ymax=2)
+  #ax.set_zlim(zmin=0, zmax=2)
 
-  xline = np.linspace(0,x,100)
-  yline = np.linspace(0,y,100)
-  zline = np.linspace(0,z,100)
 
-  
+  txline = np.linspace(tx,tx + dtx * 1000, 1000)
+  tyline = np.linspace(ty,ty + dty, 1000)
+  tzline = np.linspace(tz,tz + dtz, 1000)
+
+  mxline = np.linspace(0,mx,100)
+  myline = np.linspace(0,my,100)
+  mzline = np.linspace(0,mz,100)
+
+
+  ax.legend()
+
   ax.set_xlabel('x')
   ax.set_ylabel('y')
   ax.set_zlabel('z');
- 
+
+  ax.plot3D(txline, tyline, tzline, 'grey', label='Target Trajectory')
+  ax.plot3D(mxline, myline, mzline, 'red', label='Missile Trajectory')
+  
+  ax.legend()
+  plt.show()
   ax.plot3D(xline, yline, zline, 'red')
