@@ -25,8 +25,8 @@ def calculate_trajectory_target(first_data):
   xyz_one = [x_one,y_one, z_one]
   xyz_two  = [x_two, y_two, z_two]
 
-  deltaT = second_data.time_spot - first_data.time_spot 
-
+  #deltaT = second_data.time_spot - first_data.time_spot 
+  deltaT = 0.1 
   deltaX = (x_two - x_one) / deltaT
   deltaY = (y_two - y_one) / deltaT
   deltaZ = (z_two - z_one) / deltaT
