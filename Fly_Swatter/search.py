@@ -13,12 +13,6 @@ def target_check(image):
   else:
     return False
 
-def rotate(phi_omega, theta_omega):
-  # This function should call Ras Pi functions to rotate the camera or Weapon
-  
-  # insert raspi function for rotation in phi and theta directions
-  return None
-
 def capture_image():
   return image
   
