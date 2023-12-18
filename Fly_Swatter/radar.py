@@ -7,6 +7,7 @@ import random
 
 # simple example assumes a sonar image (probably want to generalize this to radar or image recognition)
 class target_loc():
+  # this class controls the 3D position and recording of radar data
   def __init__(self, phi, theta, r, time_spot):
     self.phi = phi
     self.theta = theta
@@ -23,11 +24,14 @@ def target_radar_sight(return_data):
 # code to generate random vector of target
 # self, phi, theta, r, time_spot)
 def generate_random_vector(max_distance):
-  a = random.randrange(0,10, 1) * (np.pi / 2) / 10
-  b = random.randrange(-10,10, 1) * (np.pi / 2) / 10
+  # this generates a simulation of the radar data given parameters
+  phi = random.randrange(0,10, 1) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
+  theta = random.randrange(-10,10, 1) * (np.pi / 2) / 10 # important to note that the bounds of theta are - pi/2 to pi/2
 
-  data_one = target_loc(a, b, max_distance, 0)
-
-  data_two = target_loc(a + 0.01, b + 0.01, 2 + 0.01, 0.1)
+  data_one = target_loc(phi, theta, max_distance, 0)
+  # need to update this to create more randomized velocity vectors for simulated targets 
+  # as it currently exsits, the difference is small but it seems that small changes can cause radical differences in the spherical coordinate system
+  
+  data_two = target_loc(phi + 0.01,theta + 0.01, max_distance + 0.01, 0.1)
 
   return [data_one, data_two]
