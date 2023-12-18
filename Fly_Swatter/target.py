@@ -18,7 +18,7 @@ def calculate_trajectory_target(first_data, second_data):
   y_two = (second_data.r) * (np.sin(second_data.theta)) * (np.sin(second_data.phi))
   z_two = (second_data.r) * (np.cos(second_data.phi))
 
-  xyz_one = [x_one,y_one,y_two]
+  xyz_one = [x_one,y_one, z_one]
   xyz_two  = [x_two, y_two, z_two]
 
   deltaT = second_data.time_spot - first_data.time_spot 
