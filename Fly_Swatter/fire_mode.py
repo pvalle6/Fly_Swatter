@@ -31,8 +31,8 @@ def track_lock(realism, projectile_type):
       print(f"Time to Target: {solution[0]}")
       print(f"Phi to Target: {solution[1]}")
       print(f"Theta to Target: {solution[2]}")
-  else:
-    print("NO SOLUTION YET AVALIABLE")
+    else:
+      print("NO SOLUTION YET AVALIABLE")
     
   
   # should activate when first detect a target from search mode 
