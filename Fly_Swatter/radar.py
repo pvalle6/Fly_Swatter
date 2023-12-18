@@ -27,8 +27,8 @@ def generate_random_vector(max_distance, speed):
   # this generates a simulation of the radar data given parameters
   # this program is entirely from the POV of the launch system in terms of phi, theta, distance, and speed
 
-  phi = random.randrange(0,10, 1) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
-  theta = random.randrange(-10,10, 1) * (np.pi / 2) / 10 # important to note that the bounds of theta are - pi/2 to pi/2
+  phi = random.randrange(1,10) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
+  theta = random.randrange(-10,10) * (np.pi / 2) / 10 # important to note that the bounds of theta are - pi/2 to pi/2
 
   data_one = target_loc(phi, theta, max_distance, 0)
   # need to update this to create more randomized velocity vectors for simulated targets 
