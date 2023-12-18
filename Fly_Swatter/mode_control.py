@@ -10,6 +10,8 @@ import time
 import sched
 import random
 
+# this should be the master script of the comptuer that controls the interface between the two modes 
+
 search.search_mode()
 
 if target_mode == True:
