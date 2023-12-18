@@ -36,9 +36,9 @@ def generate_random_vector(max_distance, speed):
   # need to update this to create more randomized velocity vectors for simulated targets 
   # as it currently exsits, the difference is small but it seems that small changes can cause radical differences in the spherical coordinate system
   
-  #data_two = target_loc(phi - .01,theta + 0.01, max_distance + 1, 0.1)
+  data_two = target_loc(phi - .01,theta + 0.01, max_distance + 1, 0.1)
 
-  return data_one
+  return [data_one, data_two]
 
 def generate_parabolic_vector(max_distance):
   # only the intial vector is supplied by this, the actual course needs to be simulated by a differential equation solver
