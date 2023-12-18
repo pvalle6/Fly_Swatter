@@ -1,7 +1,7 @@
 from Fly_Swatter.Fly_Swatter import radar
 from Fly_Swatter.Fly_Swatter import target
 
-def target_mode():
+def track_lock():
   # should activate when first detect a target from search mode 
 
   # should schedule a check to see if a firing solution is avaliable
