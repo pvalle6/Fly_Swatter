@@ -20,12 +20,14 @@ def target_radar_sight(return_data):
   time = time.time()
   return phi, theta, r, time
 
+# code to generate random vector of target
+# self, phi, theta, r, time_spot)
 def generate_random_vector(max_distance):
-  a = random.random() * (np.pi / 2)
-  b = random.random() * (2 * np.pi)
+  a = random.randrange(0,10, 1) * (np.pi / 2) / 10
+  b = random.randrange(-10,10, 1) * (np.pi / 2) / 10
 
-  data_one = target_loc(a, b, random.random() * max_distance, 0)
+  data_one = target_loc(a, b, max_distance, 0)
 
-  data_two = target_loc(a + 0.01, b + 0.01, 2 + 0.01, 0.2)
+  data_two = target_loc(a + 0.01, b + 0.01, 2 + 0.01, 0.1)
 
   return [data_one, data_two]
