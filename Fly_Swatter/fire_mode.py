@@ -32,7 +32,9 @@ def track_lock(realism, projectile_type, target_course):
       print(f"Phi to Target: {solution[1]}")
       print(f"Theta to Target: {solution[2]}")
     else:
-      print("NO SOLUTION YET AVALIABLE")
+      print("NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
+  else:
+      print("NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
     
   
   # should activate when first detect a target from search mode 
