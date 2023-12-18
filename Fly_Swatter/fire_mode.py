@@ -1,7 +1,15 @@
 from Fly_Swatter.Fly_Swatter import radar
 from Fly_Swatter.Fly_Swatter import target
 
-def track_lock():
+def track_lock(realism):
+  # three realism levels to calculate for 
+  if realism = 0:
+    print("NO AIR AND NO GRAVITY")
+  elif realism = 1:
+    print ("NO AIR and GRAVITY")
+  elif realism = 2:
+    print ("AIR AND GRAVITY")
+  
   # should activate when first detect a target from search mode 
 
   # should schedule a check to see if a firing solution is avaliable
