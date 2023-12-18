@@ -2,16 +2,37 @@ from Fly_Swatter.Fly_Swatter import radar
 from Fly_Swatter.Fly_Swatter import target
 
 # might want to have this part coded before the switch to improve computational effiency and not delay time to solution
-
+def check_valdity(solution):
+  if solution[0] <= 0.05:
+    return False
+  else:
+    return True
+    
+def laser_handler(data_one, data_two):
+  deltaT, deltaXYZ, xyz_one, xyz_two = target.calculate_trajectory_target(first_loc, second_loc)
+  guess_solution = xyz_two
+  solution = scipy.optimize.fsolve(target.laser_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
+  if(check_valdity(solution)):
+    return [solution, True]
+  else:
+    return [None, False]
+  
 def track_lock(realism, projectile_type):
   # three realism levels to calculate for 
   if realism == 0 and projectile_type = "bullet":
     # this case is basically a single fire laser
-    
+    validity = False
     #only part actually coded for
     print("SOLUTION INCOMING")
+    first_loc, second_loc = radar.generate_random_vector(2)
+    solution, validity = laser_handler(first_loc, second_loc)
+    if validity:
+      print("Solution Found")
+      print(f"Time to Target: {solution[0]}")
+      print(f"Phi to Target: {solution[1]}")
+      print(f"Theta to Target: {solution[2]}")
   else:
-    print("NO YET AVALIABLE")
+    print("NO SOLUTION YET AVALIABLE")
     
   
   # should activate when first detect a target from search mode 
