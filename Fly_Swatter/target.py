@@ -6,7 +6,7 @@ import random
 
 from Fly_Swatter.Fly_Swatter import radar
 
-def calculate_trajectory_target(first_data, second_data):
+def calculate_trajectory_target(first_data):
   # this data takes two recording of target data, calculates the derivatives
   # and converts the data from spherical to cartesian coordinates for easy of calculation 
 
@@ -14,10 +14,14 @@ def calculate_trajectory_target(first_data, second_data):
   y_one = (first_data.r) * (np.sin(first_data.theta)) * (np.sin(first_data.phi))
   z_one = (first_data.r) * (np.cos(first_data.phi))
 
-  x_two = (second_data.r) * (np.cos(second_data.theta)) * (np.sin(second_data.phi))
-  y_two = (second_data.r) * (np.sin(second_data.theta)) * (np.sin(second_data.phi))
-  z_two = (second_data.r) * (np.cos(second_data.phi))
+  # x_two = (second_data.r) * (np.cos(second_data.theta)) * (np.sin(second_data.phi))
+  # y_two = (second_data.r) * (np.sin(second_data.theta)) * (np.sin(second_data.phi))
+  # z_two = (second_data.r) * (np.cos(second_data.phi))
 
+  x_two = x_one + random.random()
+  y_two = y_one + random.random()
+  y_two = z_one + random.random()
+  
   xyz_one = [x_one,y_one, z_one]
   xyz_two  = [x_two, y_two, z_two]
 
