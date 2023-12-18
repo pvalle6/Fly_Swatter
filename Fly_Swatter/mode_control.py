@@ -13,5 +13,5 @@ import random
 search.search_mode()
 
 if target_mode == True:
-  track_lock()
+  fire_mode.track_lock()
   
