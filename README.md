@@ -1,6 +1,6 @@
 # Fly_Swatter
 
-Fly_Swatter is the backend code for a project to calculate ballistics and launch a projectile to hit a moving object. 
+Fly_Swatter is a fire control computer that calculate ballistics and angle to launch a projectile to hit a moving object. 
 
 Examples contains a working example of the computer. 
 
