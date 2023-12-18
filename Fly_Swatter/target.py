@@ -48,7 +48,7 @@ def calculate_ballistics_missile(speed, phi, theta):
   deltaXYZ = [deltaX, deltaY, deltaZ]
   return deltaXYZ
 
-def find_firing_solution(x, deltaXYZ, xyz_two, missile_speed):
+def laser_solution(x, deltaXYZ, xyz_two, missile_speed):
   # x0 is time, x1 is phi, x2 is theta, 
   # this is the function used by scipy to solve as a set of three equations 
   m_x_speed, m_y_speed, m_z_speed = calculate_ballistics_missile(missile_speed, x[1], x[2])
