@@ -6,16 +6,6 @@ import random
 
 from Fly_Swatter.Fly_Swatter import radar
 
-# need to create a system for generating realistic trajectories of mock targets
-
-#phi_one, theta_one, r_one, time_one = target_radar_sight(target_data_one)
-
-#phi_two, theta_two, r_two, time_two = target_radar_sight(target_data_two)
-
-first_loc = target_loc(.3, .3, 2, 0)
-
-second_loc = target_loc(.301, 0.301, 2, 0.2)
-
 def calculate_trajectory_target(first_data, second_data):
   # probably want to convert to cartesian coordinates immedatiately unless there is a spherical coordinate formula
 
