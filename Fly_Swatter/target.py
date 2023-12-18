@@ -20,7 +20,7 @@ def calculate_trajectory_target(first_data):
 
   x_two = x_one + random.random()
   y_two = y_one + random.random()
-  y_two = z_one + random.random()
+  z_two = z_one + random.random()
   
   xyz_one = [x_one,y_one, z_one]
   xyz_two  = [x_two, y_two, z_two]
