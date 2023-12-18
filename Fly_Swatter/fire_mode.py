@@ -5,7 +5,9 @@ from Fly_Swatter.Fly_Swatter import target
 
 def track_lock(realism, projectile_type):
   # three realism levels to calculate for 
-  if realism == 0 and projectile_type = "straight":
+  if realism == 0 and projectile_type = "bullet":
+    # this case is basically a single fire laser
+    
     #only part actually coded for
     print("SOLUTION INCOMING")
   else:
