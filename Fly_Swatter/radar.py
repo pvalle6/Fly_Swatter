@@ -34,7 +34,7 @@ def generate_random_vector(max_distance, speed):
   # need to update this to create more randomized velocity vectors for simulated targets 
   # as it currently exsits, the difference is small but it seems that small changes can cause radical differences in the spherical coordinate system
   
-  data_two = target_loc(phi + 0.01,theta + 0.01, max_distance + 0.01, 0.1)
+  data_two = target_loc(phi + 0.01,theta + 0.01, max_distance + 1, 0.1)
 
   return [data_one, data_two]
 
