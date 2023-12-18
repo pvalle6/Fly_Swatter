@@ -41,7 +41,8 @@ def recalculate_spherical(deltaX, deltaY, deltaZ, deltaT, x, y, z):
 def calculate_ballistics_missile(speed, phi, theta):
   # this calculates the cartestian vector of the missile from launch
   # makes solving differential equation easier
-
+  # this function is also used in ballistics sim as it uses it own origin as reference for phi and theta
+  
   deltaX = (speed) * (np.cos(theta)) * (np.sin(phi))
   deltaY = (speed) * (np.sin(theta)) * (np.sin(phi))
   deltaZ = (speed) * (np.cos(phi))
