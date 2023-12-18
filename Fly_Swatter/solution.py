@@ -1,3 +1,5 @@
+from Fly_Swatter.Fly_Swatter import radar
+from Fly_Swatter.Fly_Swatter import search
 # probably going to have to create a differential equation solver for this one
 deltaT, deltaXYZ, xyz_one, xyz_two = calculate_trajectory_target(first_loc, second_loc)
 
