@@ -8,6 +8,8 @@ Examples contains a working example of the computer.
 
 ![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/d2a03fbd-b9bf-4e0d-abda-1e491026e5ef)
 
+To Do:
+Implement Testing after Ballistics is done
 
 Requirements:
 numpy,
