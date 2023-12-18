@@ -16,6 +16,8 @@ def track_lock():
   # once firing solution is calculated, fire, and reset
 
 class azimuth_control():
+  # class for controlling the orientation of the launch system and radar
+  # need to implement controls for slaving launch system to radar
   def __init__(self, name, status, theta, phi, x, y, z):
     self.name = name
     self.status = status
