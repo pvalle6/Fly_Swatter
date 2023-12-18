@@ -38,7 +38,7 @@ def generate_random_vector(max_distance, speed):
   
   data_two = target_loc(phi - .01,theta + 0.01, max_distance + 1, 0.1)
 
-  return [data_one, data_two]
+  return data_one
 
 def generate_parabolic_vector(max_distance):
   # only the intial vector is supplied by this, the actual course needs to be simulated by a differential equation solver
