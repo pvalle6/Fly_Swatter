@@ -17,6 +17,8 @@ def capture_image():
   return image
   
 def search_mode():
+  # this needs to create a scheduled series of events and a quick break once a target is identified 
+  # should schedule a scan and recoding of event, maybe implement a saving of initial target location
   scheduler = sched.scheduler(time.time, time.sleep)
   image = 'j'
   search = True
