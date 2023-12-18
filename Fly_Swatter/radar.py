@@ -1,3 +1,8 @@
+import numpy as np
+import scipy
+import time
+import sched
+import random
 # to calculate the ballistics of a target, two samples is the minimum required for a triangle to be created
 
 # simple example assumes a sonar image (probably want to generalize this to radar or image recognition)
