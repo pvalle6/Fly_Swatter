@@ -21,4 +21,13 @@ class ballistic():
     self.z = z
     self.speed = speed
     self.life_time = time.time() # relatively zero, absolutely to unix
+  def get_loc_speed(time_sample):
+    if self.btype == "simple_kin":
+      # this option should use the kinematic equations and unix time to calculate the trajectory and return locations and velocity vectors
+    else:
+      # Runge Kutta Hell
+      # I haven't put air resistance
+      # I also could merge and implement straight line kinematics in here or continuous flights
+
+    
 
