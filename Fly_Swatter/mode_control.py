@@ -15,5 +15,5 @@ import random
 search.search_mode()
 
 if target_mode == True:
-  fire_mode.track_lock()
+  fire_mode.track_lock(0, 'bullet')
   
