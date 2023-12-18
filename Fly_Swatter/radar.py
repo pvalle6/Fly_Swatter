@@ -45,14 +45,18 @@ def generate_parabolic_vector(max_distance):
   # should be noted that though generated_random_vector uses phi and theta in terms of the launch system,
   # the phi and theta referenced here are from the perspective of the initial site
   
+  # note that this random angle has nothing to do with theta or phi, it is just a simple way of generating a set of x and y coordinates
   random_ground_angle = random.randrange(-10,10, 1) * (np.pi / 2) / 10
   z = 0
   y = max_distance * np.sin(random_angle)
   x = max_distance * np.cos(random_angle)
 
   # i want this to be mortar like, so phi needs to be quite large, theta probably should be towards (0,0,0) with some deviation
-  phi = random.randrange(0,10, 1) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
-  theta = random.randrange(-10,10, 1) * (np.pi / 2) / 10 # important to note that the bounds of theta are - pi/2 to pi/2
+  phi = random.randrange(3,10, 1) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
+  # to make a theta that is pointed somewhat towards origin, with a little deviation
+  theta = np.tan(y/x) + (random.randrange(-10,10)/50)
   
+  v_naught = 2
   initial_xyz = [x,y,z]
+  
   return [initial_xyz, v_naught, phi, theta]
