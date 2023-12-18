@@ -23,8 +23,10 @@ def target_radar_sight(return_data):
 
 # code to generate random vector of target
 # self, phi, theta, r, time_spot)
-def generate_random_vector(max_distance):
+def generate_random_vector(max_distance, speed):
   # this generates a simulation of the radar data given parameters
+  # this program is entirely from the POV of the launch system in terms of phi, theta, distance, and speed
+
   phi = random.randrange(0,10, 1) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
   theta = random.randrange(-10,10, 1) * (np.pi / 2) / 10 # important to note that the bounds of theta are - pi/2 to pi/2
 
@@ -35,3 +37,22 @@ def generate_random_vector(max_distance):
   data_two = target_loc(phi + 0.01,theta + 0.01, max_distance + 0.01, 0.1)
 
   return [data_one, data_two]
+
+def generate_parabolic_vector(max_distance):
+  # only the intial vector is supplied by this, the actual course needs to be simulated by a differential equation solver
+  # assuming launcher sytem is located at (0,0,0)
+
+  # should be noted that though generated_random_vector uses phi and theta in terms of the launch system,
+  # the phi and theta referenced here are from the perspective of the initial site
+  
+  random_ground_angle = random.randrange(-10,10, 1) * (np.pi / 2) / 10
+  z = 0
+  y = max_distance * np.sin(random_angle)
+  x = max_distance * np.cos(random_angle)
+
+  # i want this to be mortar like, so phi needs to be quite large, theta probably should be towards (0,0,0) with some deviation
+  phi = random.randrange(0,10, 1) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
+  theta = random.randrange(-10,10, 1) * (np.pi / 2) / 10 # important to note that the bounds of theta are - pi/2 to pi/2
+  
+  initial_xyz = [x,y,z]
+  return [initial_xyz, v_naught, phi, theta]
