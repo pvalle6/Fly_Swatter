@@ -7,6 +7,8 @@ class target_loc():
     self.theta = theta
     self.r = r
     self.time_spot = time_spot
+  def tell(self):
+    return (f"Phi: {self.phi}  " + f"Theta: {self.theta} " + f"Rho: {self.r}")
 
 def target_radar_sight(return_data):
   # need a function that captures a location of the target
