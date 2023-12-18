@@ -5,8 +5,6 @@ import sched
 import random
 
 from Fly_Swatter.Fly_Swatter import radar
-from Fly_Swatter.Fly_Swatter import solution 
-
 
 # need to create a system for generating realistic trajectories of mock targets
 
