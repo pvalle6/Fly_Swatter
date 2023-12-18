@@ -6,7 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time):
-
+  # function that enables a quick 3d plot of the missile launch and interception of a straight-course target
+  # probably need to update with a non-straight course target and non straight missile path
   mx, my, mz = target.calculate_ballistics_missile(missile_speed, phi, theta)
   tx, ty, tz = xyz_target
   dtx, dty, dtz = deltaXYZ_target
