@@ -1,14 +1,16 @@
 from Fly_Swatter.Fly_Swatter import radar
 from Fly_Swatter.Fly_Swatter import target
 
-def track_lock(realism):
+# might want to have this part coded before the switch to improve computational effiency and not delay time to solution
+
+def track_lock(realism, projectile_type):
   # three realism levels to calculate for 
-  if realism = 0:
-    print("NO AIR AND NO GRAVITY")
-  elif realism = 1:
-    print ("NO AIR and GRAVITY")
-  elif realism = 2:
-    print ("AIR AND GRAVITY")
+  if realism == 0 and projectile_type = "straight":
+    #only part actually coded for
+    print("SOLUTION INCOMING")
+  else:
+    print("NO YET AVALIABLE")
+    
   
   # should activate when first detect a target from search mode 
 
