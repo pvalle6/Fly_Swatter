@@ -32,6 +32,36 @@ def generate_random_vector(max_distance, speed):
   phi = random.randrange(0,8) * (np.pi / 2) / 10 # bounds of phi are 0 to pi / 2
   theta = random.randrange(-10,10) * (np.pi / 2) / 10 # important to note that the bounds of theta are - pi/2 to pi/2
 
+  
+def calculate_trajectory_target(first_data):
+  # this data takes two recording of target data, calculates the derivatives
+  # and converts the data from spherical to cartesian coordinates for easy of calculation 
+
+  x_one = (first_data.r) * (np.cos(first_data.theta)) * (np.sin(first_data.phi))
+  y_one = (first_data.r) * (np.sin(first_data.theta)) * (np.sin(first_data.phi))
+  z_one = (first_data.r) * (np.cos(first_data.phi))
+
+  # x_two = (second_data.r) * (np.cos(second_data.theta)) * (np.sin(second_data.phi))
+  # y_two = (second_data.r) * (np.sin(second_data.theta)) * (np.sin(second_data.phi))
+  # z_two = (second_data.r) * (np.cos(second_data.phi))
+
+  x_two = x_one + random.random()
+  y_two = y_one + random.random()
+  z_two = z_one + random.random()
+  
+  xyz_one = [x_one,y_one, z_one]
+  xyz_two  = [x_two, y_two, z_two]
+
+  #deltaT = second_data.time_spot - first_data.time_spot 
+  deltaT = 1
+  deltaX = (x_two - x_one) / deltaT
+  deltaY = (y_two - y_one) / deltaT
+  deltaZ = (z_two - z_one) / deltaT
+
+  deltaXYZ = [deltaX, deltaY, deltaZ]
+
+  return [deltaT, deltaXYZ, xyz_one, xyz_two]
+
   data_one = target_loc(phi, theta, max_distance, 0)
   # need to update this to create more randomized velocity vectors for simulated targets 
   # as it currently exsits, the difference is small but it seems that small changes can cause radical differences in the spherical coordinate system
