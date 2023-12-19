@@ -6,35 +6,6 @@ import random
 
 from Fly_Swatter.Fly_Swatter import radar
 
-def calculate_trajectory_target(first_data):
-  # this data takes two recording of target data, calculates the derivatives
-  # and converts the data from spherical to cartesian coordinates for easy of calculation 
-
-  x_one = (first_data.r) * (np.cos(first_data.theta)) * (np.sin(first_data.phi))
-  y_one = (first_data.r) * (np.sin(first_data.theta)) * (np.sin(first_data.phi))
-  z_one = (first_data.r) * (np.cos(first_data.phi))
-
-  # x_two = (second_data.r) * (np.cos(second_data.theta)) * (np.sin(second_data.phi))
-  # y_two = (second_data.r) * (np.sin(second_data.theta)) * (np.sin(second_data.phi))
-  # z_two = (second_data.r) * (np.cos(second_data.phi))
-
-  x_two = x_one + random.random()
-  y_two = y_one + random.random()
-  z_two = z_one + random.random()
-  
-  xyz_one = [x_one,y_one, z_one]
-  xyz_two  = [x_two, y_two, z_two]
-
-  #deltaT = second_data.time_spot - first_data.time_spot 
-  deltaT = 1
-  deltaX = (x_two - x_one) / deltaT
-  deltaY = (y_two - y_one) / deltaT
-  deltaZ = (z_two - z_one) / deltaT
-
-  deltaXYZ = [deltaX, deltaY, deltaZ]
-
-  return [deltaT, deltaXYZ, xyz_one, xyz_two]
-
 def recalculate_spherical(deltaX, deltaY, deltaZ, deltaT, x, y, z):
   # this function converts derivatives from cartestian to spherical coordinates
   dtheta_dt  = (-x / ((x ** 2) + (y ** 2)) ) * (deltaX) + (x / ((x ** 2) + (y ** 2)) ) * (deltaY)
