@@ -20,7 +20,7 @@ def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time)
   #ax.set_zlim(zmin=0, zmax=2)
 
 
-  txline = np.linspace(tx,tx + (dtx * time, 1000)
+  txline = np.linspace(tx,tx + dtx * time, 1000)
   tyline = np.linspace(ty,ty + dty * time, 1000)
   tzline = np.linspace(tz,tz + dtz * time, 1000)
 
