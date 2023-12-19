@@ -40,4 +40,3 @@ def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time)
   
   ax.legend()
   plt.show()
-  ax.plot3D(xline, yline, zline, 'red')
