@@ -8,8 +8,8 @@ def check_valdity(solution):
   else:
     return True
     
-def laser_handler(data_one, data_two):
-  deltaT, deltaXYZ, xyz_one, xyz_two = target.calculate_trajectory_target(first_loc, second_loc)
+def laser_handler(data_one):
+  deltaT, deltaXYZ, xyz_one, xyz_two = target.calculate_trajectory_target(first_loc)
   guess_solution = xyz_two
   solution = scipy.optimize.fsolve(target.laser_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
   if(check_valdity(solution)):
@@ -26,7 +26,7 @@ def track_lock(realism, projectile_type, target_course):
     print("SOLUTION INCOMING")
     first_loc = radar.generate_random_vector(2, 2) # this needs to substituted for the same sim as the search mode
 
-    solution, validity = laser_handler(first_loc, second_loc)
+    solution, validity = laser_handler(first_loc)
     if validity:
       print("Solution Found")
       print(f"Time to Target: {solution[0]}")
