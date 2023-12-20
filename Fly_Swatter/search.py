@@ -5,7 +5,7 @@ import sched
 import random
 
 def target_check(image = None, seed = None):
-  # test function to return true or false if a image
+  # seed = 10 returns True always
   random.seed(seed)
   # is recognized 
   # to simulate, roll die with 1/10 probability
@@ -14,11 +14,11 @@ def target_check(image = None, seed = None):
   else:
     return False
   
-def search_mode():
+def search_mode(runs = 10, seed = None):
   # this needs to create a scheduled series of events and a quick break once a target is identified 
   # should schedule a scan and recoding of event, maybe implement a saving of initial target location
   scheduler = sched.scheduler(time.time, time.sleep)
-  image = 'j' # need to make this sometime of radar/image recongition input
+  
   search = True
   rotation_count = 0 
   
@@ -28,12 +28,12 @@ def search_mode():
     scheduler.enter(1,1, print, ("SCANNING"))
     scheduler.run()
 
-    if target_check("image"):
+    if target.target_check(seed):
       search = False
       print("TARGET SPOTTED")
       return True
     else:
-      if rotation_count >= 10:
+      if rotation_count >= runs:
         search = False
         return False
       #rotate(phi, theta)
