@@ -11,11 +11,8 @@ import sched
 import random
 
 # this should be the master script of the comptuer that controls the interface between the two modes 
-
-target_mode = search.search_mode()
-
-if target_mode:
-  # none of this works yet, lol
-  
-  fire_mode.track_lock(realism = 0, projectile_type= "bullet", target_course = "straight")
+def system_run():
+  target_mode = search.search_mode()
+  if target_mode:
+    fire_mode.track_lock(realism = 0, projectile_type= "bullet", target_course = "straight")
   
