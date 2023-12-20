@@ -15,6 +15,7 @@ def check_valdity(solution):
     return True
     
 def laser_handler(first_loc):
+  missile_speed = 10
   deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc)
   guess_solution = xyz_two
   solution = scipy.optimize.fsolve(target.laser_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
