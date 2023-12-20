@@ -23,7 +23,7 @@ def target_radar_sight(return_data):
 
 # code to generate random vector of target
 # self, phi, theta, r, time_spot)
-def generate_random_vector(max_distance, speed, seed):
+def generate_random_vector(max_distance, speed, seed = None):
   # this generates a simulation of the radar data given parameters
   # this program is entirely from the POV of the launch system in terms of phi, theta, distance, and speed
   if seed != 0:
