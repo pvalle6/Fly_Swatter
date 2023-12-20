@@ -24,7 +24,8 @@ def track_lock(realism, projectile_type, target_course):
     validity = False
     #only part actually coded for
     print("SOLUTION INCOMING")
-    first_loc, second_loc = radar.generate_random_vector(2)
+    first_loc, second_loc = radar.generate_random_vector(2) # this needs to substituted for the same sim as the search mode
+
     solution, validity = laser_handler(first_loc, second_loc)
     if validity:
       print("Solution Found")
