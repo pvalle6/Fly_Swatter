@@ -4,8 +4,9 @@ import time
 import sched
 import random
 
-def target_check(image):
+def target_check(image = None, seed = None):
   # test function to return true or false if a image
+  random.seed(seed)
   # is recognized 
   # to simulate, roll die with 1/10 probability
   if random.randint(1,10) > 9:
