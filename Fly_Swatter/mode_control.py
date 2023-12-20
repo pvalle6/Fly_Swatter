@@ -15,5 +15,7 @@ import random
 target_mode = search.search_mode()
 
 if target_mode:
+  # none of this works yet, lol
+  
   fire_mode.track_lock(realism = 0, projectile_type= "bullet", target_course = "straight")
   
