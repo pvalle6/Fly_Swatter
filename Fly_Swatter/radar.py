@@ -38,7 +38,7 @@ def generate_random_vector(max_distance, speed, seed = None):
   first_data = target_loc(phi = phi, r = max_distance, theta = theta, time_spot = time.time())
   return first_data
   
-def calculate_trajectory_target(first_data, seed):
+def calculate_trajectory_target(first_data, seed = None):
   # this data takes two recording of target data, calculates the derivatives
   # and converts the data from spherical to cartesian coordinates for easy of calculation 
 
