@@ -19,7 +19,7 @@ def laser_handler(data_one, data_two):
   
 def track_lock(realism, projectile_type, target_course):
   # three realism levels to calculate for 
-  if realism == 0 and projectile_type == "bullet" and target_type == "straight":
+  if realism == 0 and projectile_type == "bullet" and target_course == "straight":
     # this case is basically a single fire laser
     validity = False
     #only part actually coded for
