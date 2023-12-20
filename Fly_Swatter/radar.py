@@ -50,9 +50,9 @@ def calculate_trajectory_target(first_data, seed):
   # y_two = (second_data.r) * (np.sin(second_data.theta)) * (np.sin(second_data.phi))
   # z_two = (second_data.r) * (np.cos(second_data.phi))
   if seed != 0:
-    random.Seed(seed)
+     random.seed(seed)
   else:
-    random.Seed()
+     random.seed()
     
   x_two = x_one + random.random()
   y_two = y_one + random.random()
