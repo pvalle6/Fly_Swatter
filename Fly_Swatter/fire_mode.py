@@ -33,7 +33,7 @@ def grav_handler(first_loc, seed = None, missile_speed = 10):
   else:
     return [None, False, None, None]
   
-def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None, graphical = False):
+def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None):
  # three realism levels to calculate for 
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
     validity = False
