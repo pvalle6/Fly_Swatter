@@ -21,5 +21,7 @@ def system_run(search_runs = 1, seed_search = 0, seed_fire = 0, verbose = False,
     if graphical:
       if realism == 0:
         graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+      if realism == 1:
+        graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
 def print_log(solution):
   print( "FIRING SOLUTION RESULTS: \n" + f"REAL TIME: {time.time()} \n" + f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}")
