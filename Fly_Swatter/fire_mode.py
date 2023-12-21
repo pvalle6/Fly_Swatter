@@ -42,9 +42,7 @@ def track_lock(realism = 0, projectile_type = "bullet", target_course = "straigh
 
     solution, validity, deltaXYZ, xyzTwo, missile_speed = laser_handler(first_loc, seed = seed)
     if validity:
-      if graphical:
-          graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
-      log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()} \n" + (f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}"))
+      log = [solution, deltaXYZ, xyzTwo, missile_speed]
     else:
       # print("NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
       log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()}" + "NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
@@ -56,7 +54,7 @@ def track_lock(realism = 0, projectile_type = "bullet", target_course = "straigh
      first_loc = radar.generate_random_vector(2, 2, seed)
      solution, validity, deltaXYZ, xyzTwo, missile_speed = grav_handler(first_loc, seed = seed)
      if validity:
-      log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()} \n" + (f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}"))
+       log = [solution, deltaXYZ, xyzTwo, missile_speed]
   return log
   
 
