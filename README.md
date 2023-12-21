@@ -6,6 +6,7 @@ Examples contains a working example of the computer.
 
 ![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/6501e363-5df1-4e3e-8a6b-2d28f2fcfab7)
 
+![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/f454004c-f801-45d4-9b17-4b633c229a20)
 
 ![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/d2a03fbd-b9bf-4e0d-abda-1e491026e5ef)
 
