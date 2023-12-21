@@ -6,6 +6,7 @@ import random
 
 from Fly_Swatter.Fly_Swatter import radar
 from Fly_Swatter.Fly_Swatter import target
+from Fly_Swatter.Fly_Swatter import graph_trajectory
 
 def check_valdity(solution):
   if solution[0] <= 0.05:
