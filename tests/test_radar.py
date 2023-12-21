@@ -13,12 +13,6 @@ from Fly_Swatter.Fly_Swatter import graph_trajectory
 
 import unittest
 
-from Fly_Swatter.Fly_Swatter import radar
-from Fly_Swatter.Fly_Swatter import search
-from Fly_Swatter.Fly_Swatter import fire_mode
-from Fly_Swatter.Fly_Swatter import target
-from Fly_Swatter.Fly_Swatter import graph_trajectory
-
 class Test_Radar(unittest.TestCase):
   def test_vector_generation(self):
     self.assertEqual(radar.generate_random_vector(2,2,237).r, 2) # this must return the value of max_distance 
