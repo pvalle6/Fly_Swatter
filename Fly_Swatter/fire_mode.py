@@ -23,69 +23,38 @@ def laser_handler(first_loc, seed = None, missile_speed = 10):
     return [solution, True, deltaXYZ, xyz_two, missile_speed]
   else:
     return [None, False, None, None]
+    
+def grav_handler(first_loc, seed = None, missile_speed = 10):
+  deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
+  guess_solution = xyz_two
+  solution = scipy.optimize.fsolve(target.proj_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
+  if(check_valdity(solution)):
+    return [solution, True, deltaXYZ, xyz_two, missile_speed]
+  else:
+    return [None, False, None, None]
   
-def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None, graphical = False):
-  # three realism levels to calculate for 
+def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None):
+ # three realism levels to calculate for 
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
-    # this case is basically a single fire laser
     validity = False
-    #only part actually coded for
     print("SOLUTION INCOMING \n")
-    first_loc = radar.generate_random_vector(2, 2) # this needs to substituted for the same sim as the search mode
+    first_loc = radar.generate_random_vector(2, 2, seed)
 
     solution, validity, deltaXYZ, xyzTwo, missile_speed = laser_handler(first_loc, seed = seed)
     if validity:
-      # print("Solution Found")
-      # print(f"Time to Target: {solution[0]}")
-      # print(f"Phi to Target: {solution[1]}")
-      # print(f"Theta to Target: {solution[2]}")
-
-      if graphical:
-          graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
-      log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()} \n" + (f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}"))
+      log = [solution, deltaXYZ, xyzTwo, missile_speed]
     else:
       # print("NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
       log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()}" + "NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
   else:
       # print("NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
       log = ("FIRING SOLUTION RESULTS: \n")+ (f"REAL TIME: {time.time()}" + "NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
+  if realism == 1 and projectile_type == "bullet" and target_course == "straight":
+     print("SOLUTION INCOMING \n")
+     first_loc = radar.generate_random_vector(2, 2, seed)
+     solution, validity, deltaXYZ, xyzTwo, missile_speed = grav_handler(first_loc, seed = seed)
+     if validity:
+       log = [solution, deltaXYZ, xyzTwo, missile_speed]
   return log
   
-  # should activate when first detect a target from search mode 
 
-  # should schedule a check to see if a firing solution is avaliable
-  # if none is avalaible, two options, calculate a likely probably solution or
-  # wait and check for another solution if avaliable
-
-
-  # might want to create a return to search mode 
-
-  # need to slave RADAR and launcher together when target mode is activated
-
-  # once firing solution is calculated, fire, and reset
-
-# class azimuth_control():
-#   # class for controlling the orientation of the launch system and radar
-#   # need to implement controls for slaving launch system to radar
-#   def __init__(self, name, status, theta, phi, x, y, z):
-#     self.name = name
-#     self.status = status
-#     self.theta = theta
-#     self.phi = phi
-#     self.x = x
-#     self.y = y
-#     self.z = z 
-
-#   def set_position(theta, phi, x, y, z):
-#     self.theta = theta
-#     self.phi = phi
-#     self.x = x
-#     self.y = y
-#     self.z = z
-
-#   def change_azimuth(d_theta, d_phi):
-#     self.theta = self.theta + d_theta
-#     self.phi = self.phi + d_phi
-
-#   def slave(controller):
-#     self.status = controller
