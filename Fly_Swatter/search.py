@@ -34,7 +34,7 @@ def search_mode(runs = 10, seed = None):
     scheduler.enter(1,1, print, ("SCANNING"))
     scheduler.run()
 
-    if target_check(seed):
+    if target_check(image = None, seed = seed):
       search = False
       print("TARGET SPOTTED")
       return True
