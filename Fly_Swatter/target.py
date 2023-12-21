@@ -34,13 +34,13 @@ def laser_solution(x, deltaXYZ, xyz_two, missile_speed):
 
 # Commenting Out until Laser is Fixed
 
-# def proj_solution(x, deltaXYZ, xyz_two, missile_speed):
-#   # this is the function assuming the projectile is affected by gravity 
+def proj_solution(x, deltaXYZ, xyz_two, missile_speed):
+  # this is the function assuming the projectile is affected by gravity 
   
-#   # x0 is time, x1 is phi, x2 is theta, 
-#   # this is the function used by scipy to solve as a set of three equations 
-#   m_x_speed, m_y_speed, m_z_speed = calculate_ballistics_missile(missile_speed, x[1], x[2])
-#   t_x_speed, t_y_speed, t_z_speed = deltaXYZ
-#   t_x_pos, t_y_pos, t_z_pos = xyz_two
-#   return [0 + m_x_speed * x[0] - t_x_pos - (t_x_speed) * x[0], 0 + m_y_speed * x[0] - t_y_pos - (t_y_speed) * x[0], 0 + m_z_speed * x[0] - (0.5 * 9.81 * (x[0] ** 2)) - t_z_pos - (t_z_speed) * x[0]]
+  # x0 is time, x1 is phi, x2 is theta, 
+  # this is the function used by scipy to solve as a set of three equations 
+  m_x_speed, m_y_speed, m_z_speed = calculate_ballistics_missile(missile_speed, x[1], x[2])
+  t_x_speed, t_y_speed, t_z_speed = deltaXYZ
+  t_x_pos, t_y_pos, t_z_pos = xyz_two
+  return [0 + m_x_speed * x[0] - t_x_pos - (t_x_speed) * x[0], 0 + m_y_speed * x[0] - t_y_pos - (t_y_speed) * x[0], 0 + m_z_speed * x[0] - (0.5 * 9.81 * (x[0] ** 2)) - t_z_pos - (t_z_speed) * x[0]]
 
