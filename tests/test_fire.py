@@ -6,11 +6,12 @@ import time
 import sched
 import random
 
-from Fly_Swatter.Fly_Swatter import radar
-from Fly_Swatter.Fly_Swatter import search
-from Fly_Swatter.Fly_Swatter import fire_mode
-from Fly_Swatter.Fly_Swatter import target
-from Fly_Swatter.Fly_Swatter import graph_trajectory
+
+import radar
+import search
+import fire_mode
+import target
+import graph_trajectory
 
 class Test_Fire(unittest.TestCase):
   def test_validity(self):
