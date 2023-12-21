@@ -11,7 +11,7 @@ Examples contains a working example of the computer.
 
 ## To Install:
 ```
-!git clone -b packaging https://github.com/pvalle6/Fly_Swatter.git
+!git clone https://github.com/pvalle6/Fly_Swatter.git
 !mv /content/Fly_Swatter/setup.py /content/setup.py
 !pip install .
 ```
