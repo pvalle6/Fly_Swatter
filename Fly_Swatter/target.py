@@ -6,12 +6,14 @@ import random
 
 from Fly_Swatter.Fly_Swatter import radar
 
-def recalculate_spherical(deltaX, deltaY, deltaZ, deltaT, x, y, z):
-  # this function converts derivatives from cartestian to spherical coordinates
-  dtheta_dt  = (-x / ((x ** 2) + (y ** 2)) ) * (deltaX) + (x / ((x ** 2) + (y ** 2)) ) * (deltaY)
-  dphi_dt = ((z * x_two) / (sqrt(x ** 2 + y **2) * (x ** 2 + z **2 + y **2))) * (deltaX)  + ((z * x) / (sqrt(x ** 2 + y **2) * (x ** 2 + z **2 + y **2))) * (deltaY) - (sqrt(y ** 2 + x ** 2) / (z ** 2 + x **2 + y **2 )) * deltaZ
-  dp_dt = (x / sqrt (x ** 2 + y ** 2 + z ** 2)) * deltaX + (y / sqrt(x ** 2 + y ** 2  + z **2)) * deltaY + (z / sqrt(x ** 2 + y ** 2  + z **2)) * deltaZ 
-  return [dtheta_dt, dphi_dt, dp_dt]
+# def recalculate_spherical(deltaX, deltaY, deltaZ, deltaT, x, y, z):
+  """ Converts Cartesian Coordinates to Spherical Coordinates
+  """
+#   # this function converts derivatives from cartestian to spherical coordinates
+#   dtheta_dt  = (-x / ((x ** 2) + (y ** 2)) ) * (deltaX) + (x / ((x ** 2) + (y ** 2)) ) * (deltaY)
+#   dphi_dt = ((z * x_two) / (sqrt(x ** 2 + y **2) * (x ** 2 + z **2 + y **2))) * (deltaX)  + ((z * x) / (sqrt(x ** 2 + y **2) * (x ** 2 + z **2 + y **2))) * (deltaY) - (sqrt(y ** 2 + x ** 2) / (z ** 2 + x **2 + y **2 )) * deltaZ
+#   dp_dt = (x / sqrt (x ** 2 + y ** 2 + z ** 2)) * deltaX + (y / sqrt(x ** 2 + y ** 2  + z **2)) * deltaY + (z / sqrt(x ** 2 + y ** 2  + z **2)) * deltaZ 
+#   return [dtheta_dt, dphi_dt, dp_dt]
 
 def calculate_ballistics_missile(speed, phi, theta):
   """ Converts Spherical Coordinates to Cartesian Coordinates
