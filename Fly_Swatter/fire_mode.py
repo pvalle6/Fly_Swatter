@@ -33,7 +33,7 @@ def track_lock(realism = 0, projectile_type = "bullet", target_course = "straigh
     print("SOLUTION INCOMING")
     first_loc = radar.generate_random_vector(2, 2) # this needs to substituted for the same sim as the search mode
 
-    solution, validity = fire_mode.laser_handler(first_loc)
+    solution, validity = laser_handler(first_loc)
     if validity:
       print("Solution Found")
       print(f"Time to Target: {solution[0]}")
