@@ -11,6 +11,10 @@ from Fly_Swatter.Fly_Swatter import target
 from Fly_Swatter.Fly_Swatter import graph_trajectory
 
 def target_check(image = None, seed = None):
+  """ Provides a simulation of detecting a airbourne target
+      image: default = none, this is just a placeholder for image/radar detection
+      seed: default = none, this is provided through mode_control, and used in probability calculation; 10 returns True always
+  """
   # seed = 10 returns True always
   random.seed(seed)
   # is recognized 
@@ -21,8 +25,10 @@ def target_check(image = None, seed = None):
     return False
   
 def search_mode(runs = 10, seed = None):
-  # this needs to create a scheduled series of events and a quick break once a target is identified 
-  # should schedule a scan and recoding of event, maybe implement a saving of initial target location
+  """ provides for a scheduling of a scanning event to simulate a radar search
+      runs: default = 10, this provides how many runs and probabilities should be calculated until something is found or retiring
+      seed: default = none, this is provided through mode_control and is used in target_check, and used in probability calculation; 10 returns True always
+  """
   scheduler = sched.scheduler(time.time, time.sleep)
   
   search = True

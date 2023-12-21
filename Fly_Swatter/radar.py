@@ -7,6 +7,7 @@ import random
 
 # simple example assumes a sonar image (probably want to generalize this to radar or image recognition)
 class target_loc():
+  """ Class for a target location as found/generated from origin """
   # this class controls the 3D position and recording of radar data
   def __init__(self, phi, theta, r, time_spot):
     self.phi = phi
@@ -21,11 +22,10 @@ class target_loc():
 #   time = time.time()
 #   return phi, theta, r, time
 
-# code to generate random vector of target
-# self, phi, theta, r, time_spot)
 def generate_random_vector(max_distance, speed, seed = None):
-  # this generates a simulation of the radar data given parameters
-  # this program is entirely from the POV of the launch system in terms of phi, theta, distance, and speed
+  """ Generates a random spherical coordinate given Rho = max_distance and a speed of the projectile """
+  # probably need to wrap this into a difference set of functions as well as calculate trajectory target 
+  # need to remove speed from here as well as the provided parametrs when this is used 
   
   random.seed(seed)
   # to test, a random generator instance is created and a seed is provded
@@ -37,8 +37,8 @@ def generate_random_vector(max_distance, speed, seed = None):
   return first_data
   
 def calculate_trajectory_target(first_data, seed = None):
-  # this data takes two recording of target data, calculates the derivatives
-  # and converts the data from spherical to cartesian coordinates for easy of calculation 
+  """ Generates a random second location of a randomly generated projectile and its velocity vector"""
+  # need to create a integrated version of this and gneerate random vector
 
   x_one = (first_data.r) * (np.cos(first_data.theta)) * (np.sin(first_data.phi))
   y_one = (first_data.r) * (np.sin(first_data.theta)) * (np.sin(first_data.phi))
