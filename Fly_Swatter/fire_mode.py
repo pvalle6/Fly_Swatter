@@ -24,7 +24,7 @@ def laser_handler(first_loc):
   else:
     return [None, False]
   
-def track_lock(realism, projectile_type, target_course):
+def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None):
   # three realism levels to calculate for 
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
     # this case is basically a single fire laser
@@ -33,7 +33,7 @@ def track_lock(realism, projectile_type, target_course):
     print("SOLUTION INCOMING")
     first_loc = radar.generate_random_vector(2, 2) # this needs to substituted for the same sim as the search mode
 
-    solution, validity = laser_handler(first_loc)
+    solution, validity = fire_mode.laser_handler(first_loc)
     if validity:
       print("Solution Found")
       print(f"Time to Target: {solution[0]}")
