@@ -9,13 +9,26 @@ Examples contains a working example of the computer.
 
 ![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/d2a03fbd-b9bf-4e0d-abda-1e491026e5ef)
 
-To Do:
-Implement Testing after Ballistics is done
-
-Requirements:
-numpy,
-scipy,
-time,
-sched,
-random,
+## To Install:
+```
+!git clone -b packaging https://github.com/pvalle6/Fly_Swatter.git
+!mv /content/Fly_Swatter/setup.py /content/setup.py
+!pip install .
+```
+## Requirements:
+```
+numpy
+scipy
+time
+sched
+random
 matplotlib
+```
+## Before submitting PR, run tests
+
+```python
+!python -m unittest /content/Fly_Swatter/tests/test_fire.py
+!python -m unittest /content/Fly_Swatter/tests/test_radar.py
+!python -m unittest /content/Fly_Swatter/tests/test_target.py
+```
+
