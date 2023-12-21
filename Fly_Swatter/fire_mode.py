@@ -25,21 +25,14 @@ def laser_handler(first_loc, seed = None, missile_speed = 10):
     return [None, False, None, None]
   
 def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None, graphical = False):
-  # three realism levels to calculate for 
+ # three realism levels to calculate for 
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
-    # this case is basically a single fire laser
     validity = False
-    #only part actually coded for
     print("SOLUTION INCOMING \n")
-    first_loc = radar.generate_random_vector(2, 2) # this needs to substituted for the same sim as the search mode
+    first_loc = radar.generate_random_vector(2, 2, seed)
 
     solution, validity, deltaXYZ, xyzTwo, missile_speed = laser_handler(first_loc, seed = seed)
     if validity:
-      # print("Solution Found")
-      # print(f"Time to Target: {solution[0]}")
-      # print(f"Phi to Target: {solution[1]}")
-      # print(f"Theta to Target: {solution[2]}")
-
       if graphical:
           graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
       log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()} \n" + (f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}"))
@@ -49,7 +42,14 @@ def track_lock(realism = 0, projectile_type = "bullet", target_course = "straigh
   else:
       # print("NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
       log = ("FIRING SOLUTION RESULTS: \n")+ (f"REAL TIME: {time.time()}" + "NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
+  if realism == 1 and projectile_type == "bullet" and target_course == "straight":
+     print("SOLUTION INCOMING \n")
+     first_loc = radar.generate_random_vector(2, 2, seed)
+     solution, validity, deltaXYZ, xyzTwo, missile_speed = grav_handler(first_loc, seed = seed)
+     if validity:
+      log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()} \n" + (f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}"))
   return log
+  
   
   # should activate when first detect a target from search mode 
 
