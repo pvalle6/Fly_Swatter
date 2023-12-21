@@ -24,14 +24,14 @@ def laser_handler(first_loc, seed = None, missile_speed = 10):
   else:
     return [None, False, None, None]
     
-  def grav_handler(first_loc, seed = None, missile_speed = 10):
-    deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
-    guess_solution = xyz_two
-    solution = scipy.optimize.fsolve(target.proj_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
-    if(check_valdity(solution)):
-      return [solution, True, deltaXYZ, xyz_two, missile_speed]
-    else:
-      return [None, False, None, None]
+def grav_handler(first_loc, seed = None, missile_speed = 10):
+  deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
+  guess_solution = xyz_two
+  solution = scipy.optimize.fsolve(target.proj_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
+  if(check_valdity(solution)):
+    return [solution, True, deltaXYZ, xyz_two, missile_speed]
+  else:
+    return [None, False, None, None]
   
 def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None, graphical = False):
  # three realism levels to calculate for 
