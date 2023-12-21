@@ -14,7 +14,7 @@ import random
 def system_run(search_runs = 1, seed_search = 0, seed_fire = 0, verbose = False, graphical = False, realism = 0):
   target_mode = search.search_mode(runs = search_runs, seed = seed_search)
   if target_mode:
-    log = fire_mode.track_lock(seed = seed_fire, graphical = graphical)
+    log = fire_mode.track_lock(seed = seed_fire, realism = realism)
     solution, deltaXYZ, xyzTwo, missile_speed = log
     if verbose:
       print_log(solution)
