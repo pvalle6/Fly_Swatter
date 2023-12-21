@@ -1,6 +1,6 @@
 # Fly_Swatter
 
-Fly_Swatter is a fire control computer that calculate ballistics and angle to launch a projectile to hit a moving object. 
+Fly_Swatter is a simulation of a fire control computer for intercepting a mid-air target. It simulates a random target relative to the origin, and then calculates the trajectory and firing solution needs for an interception. 
 
 Examples contains a working example of the computer. 
 
