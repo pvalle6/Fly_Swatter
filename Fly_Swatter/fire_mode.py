@@ -41,7 +41,7 @@ def track_lock(realism = 0, projectile_type = "bullet", target_course = "straigh
       # print(f"Theta to Target: {solution[2]}")
 
       if graphical:
-          graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ_target, xyz_target, solution[0])
+          graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
       log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()} \n" + (f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}"))
     else:
       # print("NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
