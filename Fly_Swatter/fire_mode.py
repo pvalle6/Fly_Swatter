@@ -22,7 +22,7 @@ def laser_handler(first_loc, seed = None, missile_speed = 10):
   if(check_valdity(solution)):
     return [solution, True, deltaXYZ, xyz_two, missile_speed]
   else:
-    return [None, False, None, None]
+    return [None, False, None, None, None]
     
 def grav_handler(first_loc, seed = None, missile_speed = 10):
   deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
