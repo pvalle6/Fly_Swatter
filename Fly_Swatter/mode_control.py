@@ -20,7 +20,7 @@ def system_run(search_runs = 1, seed_search = None, seed_fire = None, verbose = 
       graphical: default = false, provides for if a graph should be printed or not
       realism: default = 0, 0 provides for laser projectile, gravityless, no air resistance; 1 provides for gravity based projectile
   """
-  fire_on, first_loc = search.search_mode(runs = search_runs, seed = seed_search)
+  fire_on, first_loc = search.search_mode(runs = search_runs, seed_fire = seed_fire, seed_search = seed_search)
   if graphical and first_loc != None:
     x, y, z = target.calculate_ballistics_missile(first_loc.r, first_loc.phi, first_loc.theta)
     graph_trajectory.plot_radar(x,y,z)
