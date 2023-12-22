@@ -18,10 +18,10 @@ class Test_Radar(unittest.TestCase):
     self.assertEqual(radar.generate_random_vector(1).tell(), 'Phi: 0.15707963267948966  Theta: -0.3141592653589793 Rho: 2.0749139528992098')
 
   def test_calc_traj(self):
-    self.assertEqual(radar.calculate_trajectory_target(radar.generate_random_vector(2,2,237), 237),[1,
-      [0.6225259266420455, 0.9050618497174403, 0.970205062907603],
-      [1.2600735106701009, -1.2600735106701009, 0.9079809994790936],
-        [1.8825994373121464, -0.35501166095266057, 1.8781860623866966]])
+    self.assertEqual(radar.calculate_trajectory_target(radar.generate_random_vector(1), 1),[1,
+ [0.13436424411240122, 0.8474337369372327, 0.7637746189766141],
+ [0.30870158408348597, -0.10030322492702326, 2.0493683190167182],
+ [0.4430658281958872, 0.7471305120102094, 2.8131429379933324]])
     
   def test_target_loc_class(self):
     self.assertEqual(radar.target_loc(0.24, 0.24, 2, time.time()).tell(), "Phi: 0.24  Theta: 0.24 Rho: 2")
