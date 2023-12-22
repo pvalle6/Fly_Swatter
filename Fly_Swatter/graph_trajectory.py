@@ -5,6 +5,37 @@ from Fly_Swatter.Fly_Swatter import target
 import numpy as np
 import matplotlib.pyplot as plt
 
+def plot_radar(x,y,z):
+  """ Creates a radar display like graph of a given target"""
+  # (update to multiple contacts in future)
+  fig = plt.figure()
+  ax = plt.axes()
+  ax.set_facecolor('#131337')
+
+  #plt.grid(b = None)
+  for i in [1.5, 3, 6, 10]:
+    ring = plt.Circle((0,0),radius=i, color = "green", fill = False, linewidth = .3)
+    ax.add_patch(ring)
+
+  
+  ax.set_xbound(-12,12)
+  ax.set_ybound(-12,12)
+
+  for i in [1.5, 3, 6]:
+    ax.annotate(f"{i} m", (0.1, i + 0.01), color = "green", ha='center',fontsize=5)
+
+
+  theta = np.pi / 2
+  for i in range(0, 360, 10):
+    
+    ax.annotate(f"{i}", (np.cos(theta) * 10.6, np.sin(theta) * 10.6 - 0.3), color = "green", ha='center', fontsize=8)
+    theta = theta - (np.pi * 2 / (360 / 10))
+  plt.xticks([])
+  plt.yticks([])
+  z = np.trunc(z * 1000) / 1000
+  plt.scatter(x,y, s = 9, color = "red", marker='s')
+  ax.annotate(f"UC {(z)} m", (x + 0.02, y), color = "red", ha = "left", fontsize = 3.5)
+  
 def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time):
   """ Function that generates a graphical representation of the target's location 
       and velocity vector as well as the missile travel path and interception for a laser like solution
