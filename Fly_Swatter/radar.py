@@ -22,7 +22,7 @@ class target_loc():
 #   time = time.time()
 #   return phi, theta, r, time
 
-def generate_random_vector(max_distance, speed, seed = None):
+def generate_random_vector(max_distance = random.random() * 8 + 1, seed = None):
   """ Generates a random spherical coordinate given Rho = max_distance and a speed of the projectile """
   # probably need to wrap this into a difference set of functions as well as calculate trajectory target 
   # need to remove speed from here as well as the provided parametrs when this is used 
