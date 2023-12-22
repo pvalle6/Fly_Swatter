@@ -15,7 +15,7 @@ import unittest
 
 class Test_Radar(unittest.TestCase):
   def test_vector_generation(self):
-    self.assertEqual(radar.generate_random_vector(2,2,237).r, 2) # this must return the value of max_distance 
+    self.assert(radar.generate_random_vector(1).tell(), 'Phi: 0.15707963267948966  Theta: -0.3141592653589793 Rho: 2.0749139528992098')
 
   def test_calc_traj(self):
     self.assertEqual(radar.calculate_trajectory_target(radar.generate_random_vector(2,2,237), 237),[1,
