@@ -10,17 +10,17 @@ from Fly_Swatter.Fly_Swatter import fire_mode
 from Fly_Swatter.Fly_Swatter import target
 from Fly_Swatter.Fly_Swatter import graph_trajectory
 
-def target_check(image = None, seed = None):
+def target_check(image = None, search_seed = None, fire_seed = None):
   """ Provides a simulation of detecting a airbourne target
       image: default = none, this is just a placeholder for image/radar detection
       seed: default = none, this is provided through mode_control, and used in probability calculation; 10 returns True always
   """
   # seed = 10 returns True always
-  random.seed(seed)
+  random.seed(search_seed)
   # is recognized 
   # to simulate, roll die with 1/10 probability
   if random.randint(1,10) > 9:
-    first_loc = radar.generate_random_vector(2, 2, seed)
+    first_loc = radar.generate_random_vector(seed = fire_seed)
     return [True, first_loc]
   else:
     return [False, None]
