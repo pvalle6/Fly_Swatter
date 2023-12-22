@@ -28,7 +28,7 @@ def plot_radar(x,y,z):
   theta = np.pi / 2
   for i in range(0, 360, 10):
     
-    ax.annotate(f"{i}", (np.cos(theta) * 10.06, np.sin(theta) * 10.06 - 0.3), color = "green", ha='center', fontsize=8)
+    ax.annotate(f"{i}", (np.cos(theta) * 10.6, np.sin(theta) * 10.6 - 0.3), color = "green", ha='center', fontsize=8)
     theta = theta - (np.pi * 2 / (360 / 10))
   plt.xticks([])
   plt.yticks([])
