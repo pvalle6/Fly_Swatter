@@ -9,16 +9,14 @@ from Fly_Swatter.Fly_Swatter import target
 from Fly_Swatter.Fly_Swatter import graph_trajectory
 
 def check_valdity(solution):
-  """ Checks if the solution could plausibily occur (negative time are just blips in the solution calculator) 
-  """
+  """ Checks if the solution could plausibily occur (negative time are just blips in the solution calculator) """
   if solution[0] <= 0.05:
     return False
   else:
     return True
 
 def laser_handler(first_loc, seed = None, missile_speed = 10):
-""" function for handling the calculation of a laser based interception
-   """
+  """ function for handling the calculation of a laser based interception """
   deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
   guess_solution = xyz_two
   solution = scipy.optimize.fsolve(target.laser_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
@@ -28,8 +26,7 @@ def laser_handler(first_loc, seed = None, missile_speed = 10):
     return [None, False, None, None, None]
     
 def grav_handler(first_loc, seed = None, missile_speed = 10):
-  """ function for handling the calculation of a gravity based ballistic interception
-   """
+  """ function for handling the calculation of a gravity based ballistic interception """
   deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
   guess_solution = xyz_two
   solution = scipy.optimize.fsolve(target.proj_solution, guess_solution, args=(deltaXYZ, xyz_two, missile_speed))
@@ -39,8 +36,7 @@ def grav_handler(first_loc, seed = None, missile_speed = 10):
     return [None, False, None, None, None]
   
 def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None, first_loc):
- """ Main function for calculating and handling the different  targeting solutions for fire_mode
- """
+ """ Main function for calculating and handling the different  targeting solutions for fire_mode"""
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
     validity = False
     print("SOLUTION INCOMING \n")
