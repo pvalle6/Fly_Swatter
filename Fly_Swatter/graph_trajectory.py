@@ -13,7 +13,7 @@ def plot_radar(x,y,z):
   ax.set_facecolor('#131337')
 
   #plt.grid(b = None)
-  for i in [0.15, 0.30, 0.60, 1.0]:
+  for i in [1.5, 3, 6, 10]:
     ring = plt.Circle((0,0),radius=i, color = "green", fill = False, linewidth = .3)
     ax.add_patch(ring)
 
@@ -21,14 +21,14 @@ def plot_radar(x,y,z):
   ax.set_xbound(-12,12)
   ax.set_ybound(-12,12)
 
-  for i in [0.15, 0.3, 0.6]:
+  for i in [1.5, 3, 6]:
     ax.annotate(f"{i} m", (0.1, i + 0.01), color = "green", ha='center',fontsize=5)
 
 
   theta = np.pi / 2
   for i in range(0, 360, 10):
     
-    ax.annotate(f"{i}", (np.cos(theta) * 1.06, np.sin(theta) * 1.06 - 0.03), color = "green", ha='center', fontsize=8)
+    ax.annotate(f"{i}", (np.cos(theta) * 10.06, np.sin(theta) * 10.06 - 0.3), color = "green", ha='center', fontsize=8)
     theta = theta - (np.pi * 2 / (360 / 10))
   plt.xticks([])
   plt.yticks([])
