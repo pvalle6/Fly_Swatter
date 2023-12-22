@@ -20,9 +20,10 @@ def target_check(image = None, seed = None):
   # is recognized 
   # to simulate, roll die with 1/10 probability
   if random.randint(1,10) > 9:
-    return True
+    first_loc = radar.generate_random_vector(2, 2, seed)
+    return [True, first_loc]
   else:
-    return False
+    return [False, None]
   
 def search_mode(runs = 10, seed = None):
   """ provides for a scheduling of a scanning event to simulate a radar search
@@ -39,13 +40,13 @@ def search_mode(runs = 10, seed = None):
     rotation_count = rotation_count + 1
     scheduler.enter(1,1, print, ("SCANNING"))
     scheduler.run()
-
-    if target_check(image = None, seed = seed):
+    ping, first_loc = target_check(image = None, seed = seed)
+    if ping:
       search = False
       print("TARGET SPOTTED")
-      return True
+      return [True, first_loc] 
     else:
       if rotation_count >= runs:
         search = False
-        return False
+        return [False, None]
       #rotate(phi, theta)
