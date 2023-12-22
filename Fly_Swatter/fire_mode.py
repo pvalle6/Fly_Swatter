@@ -38,13 +38,13 @@ def grav_handler(first_loc, seed = None, missile_speed = 10):
   else:
     return [None, False, None, None, None]
   
-def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None):
+def track_lock(realism = 0, projectile_type = "bullet", target_course = "straight", seed = None, first_loc):
  """ Main function for calculating and handling the different  targeting solutions for fire_mode
  """
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
     validity = False
     print("SOLUTION INCOMING \n")
-    first_loc = radar.generate_random_vector(2, 2, seed)
+    
 
     solution, validity, deltaXYZ, xyzTwo, missile_speed = laser_handler(first_loc, seed = seed)
     if validity:
