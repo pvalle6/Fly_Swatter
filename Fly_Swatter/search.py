@@ -25,7 +25,7 @@ def target_check(image = None, search_seed = None, fire_seed = None):
   else:
     return [False, None]
   
-def search_mode(runs = 10, seed = None):
+def search_mode(runs = 10, seed_fire = None, seed_search = None):
   """ provides for a scheduling of a scanning event to simulate a radar search
       runs: default = 10, this provides how many runs and probabilities should be calculated until something is found or retiring
       seed: default = none, this is provided through mode_control and is used in target_check, and used in probability calculation; 10 returns True always
@@ -40,7 +40,7 @@ def search_mode(runs = 10, seed = None):
     rotation_count = rotation_count + 1
     scheduler.enter(1,1, print, ("SCANNING"))
     scheduler.run()
-    ping, first_loc = target_check(image = None, seed = seed)
+    ping, first_loc = target_check(image = None, search_seed = seed_search, fire_seed = seed_fire)
     if ping:
       search = False
       print("TARGET SPOTTED")
