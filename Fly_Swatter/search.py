@@ -43,7 +43,6 @@ def search_mode(runs: int = 10, seed_fire: int = None, seed_search: int = None):
     scheduler.run()
     ping, first_loc = target_check(image = None, search_seed = seed_search, fire_seed = seed_fire)
     if ping:
-      search = False
       print("TARGET SPOTTED")
       contacts.append(first_loc)
       return [True, contacts] 
