@@ -5,7 +5,7 @@ from Fly_Swatter.Fly_Swatter import target
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_radar(list):
+def plot_radar(p_list):
   """ Creates a radar display like graph of a given target"""
   # (update to multiple contacts in future)
   fig = plt.figure(dpi=200)
@@ -34,7 +34,7 @@ def plot_radar(list):
   plt.yticks([])
   
 
-  for i in list:
+  for i in p_list:
     x, y, z = i 
     z = np.trunc(z * 1000) / 1000
     plt.scatter(x,y, s = 9, color = "red", marker='s')
