@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 def plot_radar(list):
   """ Creates a radar display like graph of a given target"""
   # (update to multiple contacts in future)
-  fig = plt.figure()
+  fig = plt.figure(dpi=1200)
   ax = plt.axes()
   ax.set_facecolor('#131337')
 
@@ -17,7 +17,6 @@ def plot_radar(list):
     ring = plt.Circle((0,0),radius=i, color = "green", fill = False, linewidth = .3)
     ax.add_patch(ring)
 
-  plt.figure(dpi=1200)
   ax.set_xbound(-12,12)
   ax.set_ybound(-12,12)
 
