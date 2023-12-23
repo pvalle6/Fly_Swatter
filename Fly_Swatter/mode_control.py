@@ -23,7 +23,7 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
   c_list = []
   
   fire_on, target_list = search.search_mode(runs = search_runs, seed_fire = seed_fire, seed_search = seed_search)
-  if graphical and fire_on != False:
+  if graphical and fire_on:
     for i in target_list:
       x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta)
       c_list.append([x,y,z])
