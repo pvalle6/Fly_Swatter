@@ -5,7 +5,7 @@ from Fly_Swatter.Fly_Swatter import target
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_radar(x,y,z):
+def plot_radar(list):
   """ Creates a radar display like graph of a given target"""
   # (update to multiple contacts in future)
   fig = plt.figure()
@@ -25,6 +25,7 @@ def plot_radar(x,y,z):
     ax.annotate(f"{i} m", (0.1, i + 0.01), color = "green", ha='center',fontsize=5)
 
 
+  # this is just creating background 
   theta = np.pi / 2
   for i in range(0, 360, 10):
     
@@ -32,9 +33,15 @@ def plot_radar(x,y,z):
     theta = theta - (np.pi * 2 / (360 / 10))
   plt.xticks([])
   plt.yticks([])
-  z = np.trunc(z * 1000) / 1000
-  plt.scatter(x,y, s = 9, color = "red", marker='s')
-  ax.annotate(f"UC {(z)} m", (x + 0.02, y), color = "red", ha = "left", fontsize = 3.5)
+  
+
+  for i in list:
+    x, y, z = i 
+    z = np.trunc(z * 1000) / 1000
+    plt.scatter(x,y, s = 9, color = "red", marker='s')
+    ax.annotate(f"UC {(z)} m", (x + 0.02, y), color = "red", ha = "left", fontsize = 3.5)
+  # this is just creating the background
+  
   
 def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time):
   """ Function that generates a graphical representation of the target's location 
