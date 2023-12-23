@@ -27,13 +27,17 @@ def system_run(search_runs = 1, seed_search = None, seed_fire = None, verbose = 
   if fire_on:
     log = fire_mode.track_lock(seed = seed_fire, realism = realism, first_loc = first_loc)
     solution, deltaXYZ, xyzTwo, missile_speed = log
-    if verbose:
-      print_log(solution)
-    if graphical:
-      if realism == 0:
-        graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
-      if realism == 1:
-        graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+    if check_null(solution, [None, None, None]) == False:
+      if verbose:
+        print_log(solution)
+      if graphical:
+        if realism == 0:
+          graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+        if realism == 1:
+          graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+    else:
+      print("Solution Not Found")
+        
 def print_log(solution):
   # prints out the target solution
   print( "FIRING SOLUTION RESULTS: \n" + f"REAL TIME: {time.time()} \n" + f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}")
