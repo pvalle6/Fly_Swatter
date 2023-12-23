@@ -50,5 +50,6 @@ def check_null(list_one,list_two):
         flag = False
   else:
     flag = False
+  return flag
     
   
