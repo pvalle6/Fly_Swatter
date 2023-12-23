@@ -27,13 +27,13 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
   for i in target_list:
     # going to want to move this into the search mode module
     contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown"))
-     
+    id = id + 1
   main_db = radar.contact_database(name = "main", contacts = contact_list)
   if graphical and fire_on:
     for i in target_list:
       x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta)
-      contact_list.append([x,y,z])
-    graph_trajectory.plot_radar(contact_list)
+      p_list.append([x,y,z])
+    graph_trajectory.plot_radar(p_list)
   if engage and fire_on:
     log = fire_mode.track_lock(seed = seed_fire, realism = realism, first_loc = target_list[0])
     solution, deltaXYZ, xyzTwo, missile_speed = log
