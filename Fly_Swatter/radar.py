@@ -28,6 +28,7 @@ class contact_database():
     return_list = []
     for i in self.contacts:
       return_list.append(i.name)
+    return return_list
       
 
 class contact():
