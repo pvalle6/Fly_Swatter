@@ -38,7 +38,7 @@ def plot_radar(list):
     x, y, z = i 
     z = np.trunc(z * 1000) / 1000
     plt.scatter(x,y, s = 9, color = "red", marker='s')
-    ax.annotate(f"UC {(z)} m", (x + 0.02, y), color = "red", ha = "left", fontsize = 3.5)
+    ax.annotate(f"UC {(z)} m", (x + 0.2, y), color = "red", ha = "left", fontsize = 3.5)
   # this is just creating the background
   
   
