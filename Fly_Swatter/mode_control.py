@@ -27,7 +27,7 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
     c_list.append([x,y,z])
     
     graph_trajectory.plot_radar(c_list)
-  if fire_on:
+  if engage and fire_on:
     log = fire_mode.track_lock(seed = seed_fire, realism = realism, first_loc = first_loc)
     solution, deltaXYZ, xyzTwo, missile_speed = log
     if check_null(solution, [None, None, None]) == False:
