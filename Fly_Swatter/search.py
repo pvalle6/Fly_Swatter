@@ -36,6 +36,7 @@ def search_mode(runs: int = 10, seed_fire: int = None, seed_search: int = None):
   rotation_count = 0 
   
   target_mode = False
+  contacts = []
   while search:
     rotation_count = rotation_count + 1
     scheduler.enter(1,1, print, ("SCANNING"))
@@ -44,9 +45,10 @@ def search_mode(runs: int = 10, seed_fire: int = None, seed_search: int = None):
     if ping:
       search = False
       print("TARGET SPOTTED")
-      return [True, first_loc] 
+      contacts.append(first_loc)
+      return [True, contacts] 
     else:
       if rotation_count >= runs:
         search = False
-        return [False, None]
+        return [False, []]
       #rotate(phi, theta)
