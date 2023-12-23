@@ -24,6 +24,11 @@ class contact_database():
     self.contacts = contacts
   def add_contact(self, contact):
     self.contacts = contacts
+  def list_contacts(self):
+    return_list = []
+    for i in self.contacts:
+      return_list.append(i.name)
+      
 
 class contact():
   """ Class for a contact """
