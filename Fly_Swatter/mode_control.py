@@ -11,7 +11,7 @@ import sched
 import random
 
 # this should be the master script of the comptuer that controls the interface between the two modes 
-def system_run(search_runs = 1, seed_search = None, seed_fire = None, verbose = False, graphical = False, realism = 0):
+def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = None, verbose: bool = False, graphical: bool = False, realism: int = 0, engage: bool = True):
   """ This is the main function for running the program. It starts both search_mode and if applicable fire_mode
       search_runs: default = 1, indicates how many times search_mode can run for if nothing is found
       seed_search: default = None, provides a seed for the calculation of the probablility of search finding something in a simulation; 10 returns True Everytime
