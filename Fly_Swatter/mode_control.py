@@ -26,7 +26,7 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
   fire_on, target_list = search.search_mode(runs = search_runs, seed_fire = seed_fire, seed_search = seed_search)
   for i in target_list:
     # going to want to move this into the search mode module
-    contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown")
+    contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown"))
      
   main_db = radar.contact_database(name = "main", contacts = contact_list)
   if graphical and fire_on:
