@@ -25,8 +25,8 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
   fire_on, target_list = search.search_mode(runs = search_runs, seed_fire = seed_fire, seed_search = seed_search)
   if graphical and fire_on != None:
     for i in target_list:
-      first_loc = target_list[i]
-      x, y, z = target.calculate_ballistics_missile(first_loc.r, first_loc.phi, first_loc.theta)
+      contact_i = i
+      x, y, z = target.calculate_ballistics_missile(contact_i.r, contact_i.phi, contact_i.theta)
       c_list.append([x,y,z])
     graph_trajectory.plot_radar(c_list)
   if engage and fire_on:
