@@ -35,7 +35,7 @@ def grav_handler(first_loc: radar.target_loc, seed: int = None, missile_speed = 
   else:
     return [None, False, None, None, None]
   
-def track_lock(first_loc: radar.target_loc, realism: int = 0, projectile_type: string = "bullet", target_course: string = "straight", seed: int = None):
+def track_lock(first_loc: radar.target_loc, realism: int = 0, projectile_type: str = "bullet", target_course: str = "straight", seed: int = None):
   """ Main function for calculating and handling the different  targeting solutions for fire_mode"""
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
     validity = False
