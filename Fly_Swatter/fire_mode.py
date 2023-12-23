@@ -15,7 +15,7 @@ def check_valdity(solution):
   else:
     return True
 
-def laser_handler(first_loc: target_loc, seed: int = None, missile_speed = 10):
+def laser_handler(first_loc: radar.target_loc, seed: int = None, missile_speed = 10):
   """ function for handling the calculation of a laser based interception """
   deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
   guess_solution = xyz_two
@@ -25,7 +25,7 @@ def laser_handler(first_loc: target_loc, seed: int = None, missile_speed = 10):
   else:
     return [None, False, None, None, None]
     
-def grav_handler(first_loc: target_loc, seed: int = None, missile_speed = 10):
+def grav_handler(first_loc: radar.target_loc, seed: int = None, missile_speed = 10):
   """ function for handling the calculation of a gravity based ballistic interception """
   deltaT, deltaXYZ, xyz_one, xyz_two = radar.calculate_trajectory_target(first_loc, seed)
   guess_solution = xyz_two
@@ -35,7 +35,7 @@ def grav_handler(first_loc: target_loc, seed: int = None, missile_speed = 10):
   else:
     return [None, False, None, None, None]
   
-def track_lock(first_loc: target_loc, realism: int = 0, projectile_type: string = "bullet", target_course: string = "straight", seed: int = None):
+def track_lock(first_loc: radar.target_loc, realism: int = 0, projectile_type: string = "bullet", target_course: string = "straight", seed: int = None):
   """ Main function for calculating and handling the different  targeting solutions for fire_mode"""
   if realism == 0 and projectile_type == "bullet" and target_course == "straight":
     validity = False
