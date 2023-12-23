@@ -45,7 +45,7 @@ def print_log(solution):
 def check_null(list_one,list_two):
   flag = True
   if len(list_one) == len(list_two):
-    for i in list_one:
+    for i in range(len(list_one)):
       if list_one[i] != list_two[i]:
         flag = False
   else:
