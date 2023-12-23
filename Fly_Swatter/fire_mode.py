@@ -47,7 +47,7 @@ def track_lock(first_loc, realism = 0, projectile_type = "bullet", target_course
       print("NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
       log = [[None,None,None], None, None, None]
 
-  else if realism == 1 and projectile_type == "bullet" and target_course == "straight":
+  elif realism == 1 and projectile_type == "bullet" and target_course == "straight":
      print("SOLUTION INCOMING \n")
      first_loc = radar.generate_random_vector(seed)
      solution, validity, deltaXYZ, xyzTwo, missile_speed = grav_handler(first_loc, seed = seed)
