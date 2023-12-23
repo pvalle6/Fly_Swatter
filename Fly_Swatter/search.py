@@ -46,8 +46,6 @@ def search_mode(runs: int = 10, seed_fire: int = None, seed_search: int = None):
       print("TARGET SPOTTED")
       contacts.append(first_loc)
       return_log = [True, contacts] 
-    else:
-      if rotation_count >= runs:
-        search = False
-        return return_log
-      #rotate(phi, theta)
+    if rotation_count >= runs:
+      search = False
+      return return_log
