@@ -20,7 +20,7 @@ class target_loc():
 class contact_database():
   """ Class for Holding the Contact Data """
   def __init__(self, name, contacts):
-    self.name = names
+    self.name = name
     self.contacts = contacts
   def add_contact(self, contact):
     self.contacts = contacts
