@@ -17,10 +17,29 @@ class target_loc():
   def tell(self):
     return (f"Phi: {self.phi}  " + f"Theta: {self.theta} " + f"Rho: {self.r}")
 
-# def target_radar_sight(return_data):
-#   # need a function that captures a location of the target
-#   time = time.time()
-#   return phi, theta, r, time
+class contact_database():
+  """ Class for Holding the Contact Data """
+  def __init__(self, name, contacts):
+    self.name = names
+    self.contacts = contacts
+  def add_contact(self, contact):
+    self.contacts = contacts
+
+class contact():
+  """ Class for a contact """
+  def __init__(self, name, last_time, last_loc, status):
+    self.name = name
+    self.last_time = last_time
+    self.last_loc = last_loc
+    self.status = status
+  def change_name(self, new_name):
+    self.name = new_name
+  def update_loc(self, last_loc, last_time):
+    self.last_loc = last_loc
+    self.last_time = last_time
+  def update_status(self, new_status):
+    self.status = new_status
+
 
 def generate_random_vector(seed = None):
   """ Generates a random spherical coordinate given Rho = max_distance and a speed of the projectile """
