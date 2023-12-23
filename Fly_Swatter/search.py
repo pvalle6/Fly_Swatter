@@ -31,7 +31,7 @@ def search_mode(runs: int = 10, seed_fire: int = None, seed_search: int = None):
       seed: default = none, this is provided through mode_control and is used in target_check, and used in probability calculation; 10 returns True always
   """
   scheduler = sched.scheduler(time.time, time.sleep)
-  
+  return_log = [False, []]
   search = True
   rotation_count = 0 
   
@@ -45,9 +45,9 @@ def search_mode(runs: int = 10, seed_fire: int = None, seed_search: int = None):
     if ping:
       print("TARGET SPOTTED")
       contacts.append(first_loc)
-      return [True, contacts] 
+    return_log = [True, contacts] 
     else:
       if rotation_count >= runs:
         search = False
-        return [False, []]
+        return return_log
       #rotate(phi, theta)
