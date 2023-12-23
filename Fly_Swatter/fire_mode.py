@@ -44,17 +44,20 @@ def track_lock(first_loc, realism = 0, projectile_type = "bullet", target_course
     if validity:
       log = [solution, deltaXYZ, xyzTwo, missile_speed]
     else:
-      # print("NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
-      log = ("FIRING SOLUTION RESULTS: \n") + (f"REAL TIME: {time.time()}" + "NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
-  else:
-      # print("NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
-      log = ("FIRING SOLUTION RESULTS: \n")+ (f"REAL TIME: {time.time()}" + "NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
+      print("NO SOLUTION YET AVALIABLE, INVALID AZMIMUTH")
+      log = [[None,None,None], None, None, None]
+
   if realism == 1 and projectile_type == "bullet" and target_course == "straight":
      print("SOLUTION INCOMING \n")
      first_loc = radar.generate_random_vector(seed)
      solution, validity, deltaXYZ, xyzTwo, missile_speed = grav_handler(first_loc, seed = seed)
      if validity:
        log = [solution, deltaXYZ, xyzTwo, missile_speed]
+     else:
+       log = [[None,None,None], None, None, None]
+  else:
+    print("NO SOLUTION YET AVALIABLE, OUT OF BOUNDS")
+    log = log = [[None,None,None], None, None, None]
   return log
   
 
