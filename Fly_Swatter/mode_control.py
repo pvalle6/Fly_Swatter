@@ -37,3 +37,14 @@ def system_run(search_runs = 1, seed_search = None, seed_fire = None, verbose = 
 def print_log(solution):
   # prints out the target solution
   print( "FIRING SOLUTION RESULTS: \n" + f"REAL TIME: {time.time()} \n" + f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}")
+
+def check_null(list_one,list_two):
+  flag = True
+  if len(list_one) == len(list_two):
+    for i in list_one:
+      if list_one[i] != list_two[i]:
+        flag = False
+  else:
+    flag = False
+    
+  
