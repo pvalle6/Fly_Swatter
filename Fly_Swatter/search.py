@@ -19,7 +19,7 @@ def target_check(image = None, search_seed: int = None, fire_seed: int = None):
   random.seed(search_seed)
   # is recognized 
   # to simulate, roll die with 1/10 probability
-  if random.randint(1,10) > 9:
+  if random.randint(1,10) > 7:
     first_loc = radar.generate_random_vector(seed = fire_seed)
     return [True, first_loc]
   else:
