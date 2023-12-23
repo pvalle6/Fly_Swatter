@@ -32,8 +32,8 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
   if graphical and fire_on:
     for i in target_list:
       x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta)
-      c_list.append([x,y,z])
-    graph_trajectory.plot_radar(c_list)
+      contact_list.append([x,y,z])
+    graph_trajectory.plot_radar(contact_list)
   if engage and fire_on:
     log = fire_mode.track_lock(seed = seed_fire, realism = realism, first_loc = target_list[0])
     solution, deltaXYZ, xyzTwo, missile_speed = log
