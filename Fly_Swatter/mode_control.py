@@ -24,9 +24,11 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
   contact_list = []
   id = 1
   fire_on, target_list = search.search_mode(runs = search_runs, seed_fire = seed_fire, seed_search = seed_search)
+
+  # this handles the plotting on the radar display image
   for i in target_list:
     # going to want to move this into the search mode module
-    contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown"))
+    contact_list.append(radar.contact("Contact " + str(id), last_time = time.time(), last_loc = i, status = "unknown"))
     id = id + 1
   main_db = radar.contact_database(name = "main", contacts = contact_list)
   if graphical and fire_on:
@@ -34,10 +36,13 @@ def system_run(search_runs: int = 1, seed_search: int = None, seed_fire: int = N
       x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta)
       p_list.append([x,y,z])
     graph_trajectory.plot_radar(p_list)
+
+
+  # This handles firing mode and calculation of trajectory to target
   if engage and fire_on:
     log = fire_mode.track_lock(seed = seed_fire, realism = realism, first_loc = target_list[0])
     solution, deltaXYZ, xyzTwo, missile_speed = log
-    if check_null(solution, [None, None, None]) == False:
+    if check_list(solution, [None, None, None]) == False:
       if verbose:
         print_log(solution)
       if graphical:
@@ -52,7 +57,7 @@ def print_log(solution):
   # prints out the target solution
   print( "FIRING SOLUTION RESULTS: \n" + f"REAL TIME: {time.time()} \n" + f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}")
 
-def check_null(list_one,list_two):
+def check_list(list_one,list_two):
   flag = True
   if len(list_one) == len(list_two):
     for i in range(len(list_one)):
