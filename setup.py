@@ -1,3 +1,3 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
-setup(name='Fly_Swatter', version='1.0', packages=["Fly_Swatter"])
+setup(name='Fly_Swatter', version='1.0')
