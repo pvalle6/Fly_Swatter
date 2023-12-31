@@ -11,7 +11,7 @@ class GUI_App:
         self.graph_bool = tk.BooleanVar()
         self.real_var = tk.IntVar(value = 1)
         self.engage_var = tk.BooleanVar()
-        self.db_bool = False
+        self.db_bool = tk.BooleanVar()
         self.target_select = 0
 
         self.args_ = None
@@ -23,7 +23,7 @@ class GUI_App:
         self.realism_button = tk.Checkbutton(self.root, text='Realism', variable = self.real_var, command = self.check_button).pack()
         self.engage_button = tk.Checkbutton(self.root, text='Engage', variable = self.engage_var, command = self.check_button).pack()
         self.prev_db = tk.Checkbutton(self.root, text='DB_Loaded', variable = self.db_bool).pack()
-
+        
         self.increment_int = tk.Button(self.root, text = 'Next Target', command = self.next_t).pack()
         self.decrement_int = tk.Button(self.root, text = 'Prev Target', command = self.prev_t).pack()
 
@@ -32,17 +32,19 @@ class GUI_App:
 
     def sys(self):
 
-        if self.db_bool == False:
+        if self.db_ == None:
             self.args_ = mode_control.system_run_args(search_runs = 1, seed_search = None, seed_fire = None, verbose = self.verb_bool.get(),
                                                       graphical = self.graph_bool.get(), realism = self.real_var.get(), engage = self.engage_var.get())
             self.db_ = mode_control.system_run(self.args_)
             self.db_bool = True
             print("")
             print("New Radar Database Created and Loaded")
+            for i in self.db_.list_contacts:
+                print(i.name)
             print("")
         else:
             mode_control.system_run(self.args_, self.db_, self.target_select)
-
+        
     def next_t(self):
         self.target_select = self.target_select + 1
         self.check_button()
@@ -59,9 +61,9 @@ class GUI_App:
         print("-------------------")
         print(f"V: {self.verb_bool.get()}")
         print(f"G: {self.graph_bool.get()}")
-        print(f"R: {self.real_var.get()}")                                                                  
+        print(f"R: {self.real_var.get()}")
+        print(f"DB: {self.db_bool}")                     
         print(f"E: {self.engage_var.get()}")
-        print(f"D: {self.db_bool}")
         print(f"Tar: {self.target_select}")
         print("-------------------")
         
