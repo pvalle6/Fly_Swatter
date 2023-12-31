@@ -22,7 +22,7 @@ class system_run_args():
     
 
 # this should be the master script of the comptuer that controls the interface between the two modes 
-def system_run(args, db = None):
+def system_run(args, db = None, t_num: int = 0):
   """ This is the main function for running the program. It starts both search_mode and if applicable fire_mode
       search_runs: default = 1, indicates how many times search_mode can run for if nothing is found
       seed_search: default = None, provides a seed for the calculation of the probablility of search finding something in a simulation; 10 returns True Everytime
@@ -42,26 +42,26 @@ def system_run(args, db = None):
       contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown")) # appends contact_list with strings and labeled radar contacts in order seen
       id = id + 1 # iterates IDs
       main_db = radar.contact_database(name = "main", contacts = contact_list) # creates a radar database from given contacts
-    if args.graphical and fire_on: # checks if the graphical option and if any radar contacts were found
-      for i in target_list: # iterates through targets to find the plots for different contacts 
-        x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta) # converts sphr  -> cart
-        p_list.append([x,y,z]) # adds to the plot list targets for the radar
-      graph_trajectory.plot_radar(p_list) # graphs the radar display
-    if args.engage and fire_on: # checks if engage is enable and contacts were found 
-      log = fire_mode.track_lock(seed = args.seed_fire, realism = args.realism, first_loc = target_list[0]) # creates a log item for track lock engage
-      solution, deltaXYZ, xyzTwo, missile_speed = log # returns graphical solutions for engagements
-      # need to refactor as to be be able to choose targets and solutions
-      
-      if check_null(solution, [None, None, None]) == False:
-        if args.verbose:
-          print_log(solution)
-      if args.graphical:
-        if args.realism == 0:
-          graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
-        if realism == 1:
-          graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
-    else:
-      print("Solution Not Found")
+      return main_db
+  if args.graphical and fire_on: # checks if the graphical option and if any radar contacts were found
+    for i in target_list: # iterates through targets to find the plots for different contacts
+      x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta) # converts sphr  -> cart
+      p_list.append([x,y,z]) # adds to the plot list targets for the radar
+    graph_trajectory.plot_radar(p_list) # graphs the radar display
+  if args.engage and fire_on: # checks if engage is enable and contacts were found
+    log = fire_mode.track_lock(seed = args.seed_fire, realism = args.realism, first_loc = target_list[0]) # creates a log item for track lock engage
+    solution, deltaXYZ, xyzTwo, missile_speed = log # returns graphical solutions for engagements
+    # need to refactor as to be be able to choose targets and solution
+    if check_null(solution, [None, None, None]) == False:
+      if args.verbose:
+        print_log(solution)
+    if args.graphical:
+      if args.realism == 0:
+        graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+      if realism == 1:
+        graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+  else:
+    print("Solution Not Found")
         
 def print_log(solution):
   # prints out the target solution
