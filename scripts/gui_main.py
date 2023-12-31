@@ -20,7 +20,9 @@ class GUI_App:
         self.run_button = tk.Button(self.root, text = 'run', command = self.sys).pack()
 
     def sys(self):
-        mode_control.system_run(search_runs = 1, seed_search = None, seed_fire = None, verbose = self.var_0, graphical = self.var_1, realism = self.var_2.get(), engage = self.var_3)
+        arg_ = mode_control.system_run_args(search_runs = 1, seed_search = None, seed_fire = None, verbose = self.var_0, graphical = self.var_1,
+                                            realism = self.var_2.get(), engage = self.var_3)
+        mode_control.system_run(arg_)
         
     def run(self):
         self.root.mainloop()
