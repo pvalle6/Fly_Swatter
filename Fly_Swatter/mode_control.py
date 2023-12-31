@@ -31,6 +31,8 @@ def system_run(args, db = None, t_num: int = 0):
       graphical: default = false, provides for if a graph should be printed or not
       realism: default = 0, 0 provides for laser projectile, gravityless, no air resistance; 1 provides for gravity based projectile
   """
+  fire_on = False
+  
   if db == None:
     # checks if there is a provided radar database
     p_list = [] # p_list holds the plotting details of contacts
@@ -42,7 +44,6 @@ def system_run(args, db = None, t_num: int = 0):
       contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown")) # appends contact_list with strings and labeled radar contacts in order seen
       id = id + 1 # iterates IDs
       main_db = radar.contact_database(name = "main", contacts = contact_list) # creates a radar database from given contacts
-      return main_db
   if args.graphical and fire_on: # checks if the graphical option and if any radar contacts were found
     for i in target_list: # iterates through targets to find the plots for different contacts
       x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta) # converts sphr  -> cart
@@ -62,7 +63,8 @@ def system_run(args, db = None, t_num: int = 0):
         graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
   else:
     print("Solution Not Found")
-        
+    
+  return main_db       
 def print_log(solution):
   # prints out the target solution
   print( "FIRING SOLUTION RESULTS: \n" + f"REAL TIME: {time.time()} \n" + f"Time to Target: {solution[0]}\nPhi to Target: {solution[1]}\nTheta to Target: {solution[2]}")
