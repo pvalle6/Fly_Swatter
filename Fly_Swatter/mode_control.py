@@ -22,7 +22,7 @@ class system_run_args():
     
 
 # this should be the master script of the comptuer that controls the interface between the two modes 
-def system_run(args):
+def system_run(args, db = None):
   """ This is the main function for running the program. It starts both search_mode and if applicable fire_mode
       search_runs: default = 1, indicates how many times search_mode can run for if nothing is found
       seed_search: default = None, provides a seed for the calculation of the probablility of search finding something in a simulation; 10 returns True Everytime
@@ -31,26 +31,30 @@ def system_run(args):
       graphical: default = false, provides for if a graph should be printed or not
       realism: default = 0, 0 provides for laser projectile, gravityless, no air resistance; 1 provides for gravity based projectile
   """
-  p_list = []
-  contact_list = []
-  id = 1
-  fire_on, target_list = search.search_mode(runs = args.search_runs, seed_fire = args.seed_fire, seed_search = args.seed_search)
-  for i in target_list:
-    # going to want to move this into the search mode module
-    contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown"))
-    id = id + 1
-  main_db = radar.contact_database(name = "main", contacts = contact_list)
-  if args.graphical and fire_on:
-    for i in target_list:
-      x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta)
-      p_list.append([x,y,z])
-    graph_trajectory.plot_radar(p_list)
-  if args.engage and fire_on:
-    log = fire_mode.track_lock(seed = args.seed_fire, realism = args.realism, first_loc = target_list[0])
-    solution, deltaXYZ, xyzTwo, missile_speed = log
-    if check_null(solution, [None, None, None]) == False:
-      if args.verbose:
-        print_log(solution)
+  if db == None:
+    # checks if there is a provided radar database
+    p_list = [] # p_list holds the plotting details of contacts
+    contact_list = [] # holds the list of contacts to be provided for the creation of a main_db
+    id = 1 # sets the first id in the databse to 1 
+    fire_on, target_list = search.search_mode(runs = args.search_runs, seed_fire = args.seed_fire, seed_search = args.seed_search) # simulates the finding of radar contacts
+    for i in target_list: # iterates through said radar contacts
+      # might wanna refactor this
+      contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown")) # appends contact_list with strings and labeled radar contacts in order seen
+      id = id + 1 # iterates IDs
+      main_db = radar.contact_database(name = "main", contacts = contact_list) # creates a radar database from given contacts
+    if args.graphical and fire_on: # checks if the graphical option and if any radar contacts were found
+      for i in target_list: # iterates through targets to find the plots for different contacts 
+        x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta) # converts sphr  -> cart
+        p_list.append([x,y,z]) # adds to the plot list targets for the radar
+      graph_trajectory.plot_radar(p_list) # graphs the radar display
+    if args.engage and fire_on: # checks if engage is enable and contacts were found 
+      log = fire_mode.track_lock(seed = args.seed_fire, realism = args.realism, first_loc = target_list[0]) # creates a log item for track lock engage
+      solution, deltaXYZ, xyzTwo, missile_speed = log # returns graphical solutions for engagements
+      # need to refactor as to be be able to choose targets and solutions
+      
+      if check_null(solution, [None, None, None]) == False:
+        if args.verbose:
+          print_log(solution)
       if args.graphical:
         if args.realism == 0:
           graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
