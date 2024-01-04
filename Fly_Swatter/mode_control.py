@@ -22,15 +22,9 @@ class system_run_args():
     
 
 # this should be the master script of the comptuer that controls the interface between the two modes 
+
 def system_run(args, db = None, t_num: int = 0):
-  """ This is the main function for running the program. It starts both search_mode and if applicable fire_mode
-      search_runs: default = 1, indicates how many times search_mode can run for if nothing is found
-      seed_search: default = None, provides a seed for the calculation of the probablility of search finding something in a simulation; 10 returns True Everytime
-      seed_fire: default = None, provides a seed for calculating random target coordinates; this may change if a solution is able to be found or not
-      verbose: default = false, determines if a log is printed out by default or not 
-      graphical: default = false, provides for if a graph should be printed or not
-      realism: default = 0, 0 provides for laser projectile, gravityless, no air resistance; 1 provides for gravity based projectile
-  """
+
   fire_on = False
   main_db = db 
   if db == None:
@@ -61,6 +55,7 @@ def system_run(args, db = None, t_num: int = 0):
             graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
           if args.realism == 1:
             graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+
     else:
       print("Solution Not Found")
     

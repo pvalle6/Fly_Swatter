@@ -71,6 +71,7 @@ class GUI_App:
         
         
     def sys(self):
+
         print("SYSTEM START")
         
         if self.db_ == None:
