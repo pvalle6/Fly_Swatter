@@ -32,7 +32,7 @@ def system_run(args, db = None, t_num: int = 0):
       realism: default = 0, 0 provides for laser projectile, gravityless, no air resistance; 1 provides for gravity based projectile
   """
   fire_on = False
-  
+  main_db = db 
   if db == None:
     # checks if there is a provided radar database
     p_list = [] # p_list holds the plotting details of contacts
@@ -56,13 +56,13 @@ def system_run(args, db = None, t_num: int = 0):
     if check_null(solution, [None, None, None]) == False:
       if args.verbose:
         print_log(solution)
-    if args.graphical:
-      if args.realism == 0:
-        graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
-      if realism == 1:
-        graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
-  else:
-    print("Solution Not Found")
+        if args.graphical:
+          if args.realism == 0:
+            graph_trajectory.graph_solution(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+          if args.realism == 1:
+            graph_trajectory.plot_ballistic_trajectory(missile_speed, solution[1], solution[2], deltaXYZ, xyzTwo, solution[0])
+    else:
+      print("Solution Not Found")
     
   return main_db       
 def print_log(solution):
