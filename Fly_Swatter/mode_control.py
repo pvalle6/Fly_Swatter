@@ -37,7 +37,7 @@ def system_run(args, db = None, t_num: int = 0):
       # might wanna refactor this
       contact_list.append(radar.contact(str(id), last_time = time.time(), last_loc = i, status = "unknown")) # appends contact_list with strings and labeled radar contacts in order seen
       id = id + 1 # iterates IDs
-      main_db = radar.contact_database(name = "main", contacts = contact_list) # creates a radar database from given contacts
+    main_db = radar.contact_database(name = "main", contacts = contact_list) # creates a radar database from given contacts
   if args.graphical and fire_on: # checks if the graphical option and if any radar contacts were found
     for i in target_list: # iterates through targets to find the plots for different contacts
       x, y, z = target.calculate_ballistics_missile(i.r, i.phi, i.theta) # converts sphr  -> cart
