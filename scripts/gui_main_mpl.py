@@ -1,6 +1,13 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+import matplotlib
+
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
+
 
 from Fly_Swatter.Fly_Swatter import mode_control, fire_mode, search, radar, target, graph_trajectory
 
@@ -8,7 +15,9 @@ class GUI_App:
     def __init__(self):
         
         self.root = tk.Tk()
-        
+        self.root.wm_title("Fire Control")
+        self.canvas = FigureCanvasTkAgg(master=self.root)
+        self.canvas.draw()
         self.frame = tk.Frame(self.root, relief = tk.GROOVE, borderwidth = 5)
         self.beta = tk.Frame(self.root, relief = tk.GROOVE, borderwidth = 5)
         self.gamma  = tk.Frame(self.root, relief = tk.RAISED, borderwidth = 5)
@@ -60,16 +69,19 @@ class GUI_App:
         self.debug_w = tk.Tk()
         self.debug_l = tk.Label(self.debug_w, text = "Debug Window").pack()
         self.realism_button = tk.Checkbutton(self.debug_w, text='Realism', variable = self.real_var, command = self.check_button).pack()
+
+
+        self.new_db_button = tk.Button(self.debug_w, text = "New DB", command = self.delete_db).pack()
         self.debug_se_label = tk.Label(self.debug_w, text = "Search Seed").pack()
         self.se_seed_e = tk.Entry(self.debug_w).pack()
         self.debug_fire_label = tk.Label(self.debug_w, text = "Fire Seed").pack()
         self.fire_seed_e = tk.Entry(self.debug_w).pack()
         self.debug_runs_label = tk.Label(self.debug_w, text = "Number of Runs").pack()
         self.runs_e = tk.Entry(self.debug_w).pack()
-        
-        
-        
-        
+          
+    def delete_db(self):
+        self.db_ = None
+        self.total_tar_text.set("Targets Avaliable: None")
     def sys(self):
         print("SYSTEM START")
         
@@ -91,19 +103,7 @@ class GUI_App:
         else:
             print("DATABASE LOADED")
             mode_control.system_run(self.args_, self.db_, self.target_select.get())
-    """    
-    def next_t(self):
-        self.target_select = self.target_select + 1
-        self.check_button()
-    def prev_t(self):
-        if self.target_select != 0:
-            self.target_select = self.target_select - 1
-        else:
-            print("First Target Selected")
-        self.check_button()
-    """
-
-
+            
     def run(self):
         self.root.mainloop()
     def check_button(self):
