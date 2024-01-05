@@ -13,7 +13,7 @@ def plot_radar(p_list):
   ax.set_facecolor('#131337')
 
   #plt.grid(b = None)
-  for i in [1.5, 3, 6, 10]:
+for i in [1.5, 3, 6, 10]:
     ring = plt.Circle((0,0),radius=i, color = "green", fill = False, linewidth = .3)
     ax.add_patch(ring)
 
@@ -40,6 +40,8 @@ def plot_radar(p_list):
     plt.scatter(x,y, s = 9, color = "red", marker='s')
     ax.annotate(f"UC {(z)} m", (x + 0.2, y), color = "red", ha = "left", fontsize = 3.5)
   # this is just creating the background
+
+  plt.show()
   
   
 def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time):
