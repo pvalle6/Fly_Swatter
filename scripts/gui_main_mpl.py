@@ -76,13 +76,6 @@ class GUI_App:
         self.graph_button.pack()
         self.engage_button.pack()
         
-
-
-
-        
-
-
-        
         #self.prev_db = tk.Checkbutton(self.root, text='DB_Loaded', variable = self.db_bool).pack()
 
         # updated to spinbox functionality instead of two buttons

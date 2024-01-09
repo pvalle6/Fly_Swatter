@@ -1,0 +1,105 @@
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+import matplotlib
+
+import time
+
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
+
+
+from Fly_Swatter.Fly_Swatter import mode_control, fire_mode, search, radar, target, graph_trajectory, controls
+
+class GUI_App:
+    def __init__(self):
+
+
+        # creates the base window
+        self.root = tk.Tk()
+        self.root.wm_title("Fire Control")
+        self.canvas = FigureCanvasTkAgg(master=self.root)
+        self.canvas.draw() # trying to get this to work
+
+        # creates 4 frames to organize the two windows
+        self.frame = tk.Frame(self.root, relief = tk.GROOVE, borderwidth = 5)
+        self.beta = tk.Frame(self.root, relief = tk.GROOVE, borderwidth = 5)
+        self.gamma  = tk.Frame(self.root, relief = tk.RAISED, borderwidth = 5)
+        self.delta  = tk.Frame(self.root, relief = tk.GROOVE, borderwidth = 5)
+
+        # this tkinter variables are used in the creation of the argument object
+        # these tkinter objects hold int values that will represent booleans
+        #self.verb_bint = tk.IntVar(value = 0)
+        #self.graph_bint = tk.IntVar(value = 0)
+        self.real_bint = tk.IntVar(value = 0)
+        #self.engage_bint = tk.IntVar(value = 0)
+
+        self.verb_bool = False
+        self.graph_bool = False
+        self.engage_bool = False
+
+        # creates a total target class and controller 
+        self.totaltar = 0
+        self.total_tar_text = tk.StringVar(value = "0")
+        self.target_select = tk.IntVar(value = 0)
+
+        # creates empty seed and fire seed variables 
+        self.se_seed = None
+        self.fi_seed = None
+        self.se_runs = tk.IntVar(value = 10)
+
+        
+        # creates a tkinter button to open the debug window for use in simulations
+        #self.debug_button = tk.Button(self.root, text = "Debug", command = self.open_debug).pack()
+
+        # creates the header for the main window
+        self.radar_l = tk.Label(self.root, text='Radar').pack()
+
+        # packing seperately solves issues o# NoneType because the
+        # generation of the new object is seperate and not of packed
+
+        self.gen_button = tk.Button(self.gamma, text = 'Generate DB', command = self.gen_db)
+        self.gen_button.pack()
+
+        self.plot_radar_button = tk.Button(self.gamma, text = 'Plot Radar',
+                                           command = self.plot_radar)
+        self.plot_radar_button.pack()
+
+
+        self.engage_button = tk.Button(self.gamma, text = "Engage Target", command = self.engage_t)
+        self.engage_button.pack()
+        
+        self.frame.pack(side = TOP)
+        self.delta.pack(side = TOP)
+        self.beta.pack(side = LEFT)
+        self.gamma.pack(side = RIGHT)
+        
+
+    def gen_db(self):
+        self.main_args = controls.db_gen_args(1,10,3)
+        self.main_db = controls.search_radar_db_gen(self.main_args)
+        print("------------------")
+        print("DATABASE GENERATED")
+        print("CONTACTS:")
+        for contacts in self.main_db.contacts:
+            print(contacts)
+        self.plot_radar()
+        
+    def plot_radar(self):
+        controls.plot_radar_display(self.main_db)
+
+    def engage_t(self):
+        self.selected_contact = self.main_db.contacts[self.target_select.get()]
+        self.solution_set = controls.engage_target(self.selected_contact,
+                                                   self.fi_seed, self.real_bint.get())
+        
+        self.solution, self.deltaXYZ, self.xyz_two, self.miss_speed = self.solution_set
+
+        print(f"Solutiom: {self.solution}")
+        
+    #def plot_sol:
+    def run(self):
+        self.root.mainloop()
+GUI_App().run()

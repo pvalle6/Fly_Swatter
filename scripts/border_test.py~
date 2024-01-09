@@ -1,0 +1,14 @@
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+
+import time
+
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+
+from matplotlib.figure import Figure
+
+from Fly_Swatter.Fly_Swatter import mode_control, fire_mode, search, radar, target, graph_trajectory, controls
+
+empty_db = radar.contact_database("empty", [])
+controls.plot_radar_display(empty_db, True, self, self.quadfive)
