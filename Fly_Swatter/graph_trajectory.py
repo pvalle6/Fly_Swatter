@@ -5,12 +5,20 @@ from Fly_Swatter.Fly_Swatter import target
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_radar(p_list):
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+
+from matplotlib.figure import Figure
+
+def plot_radar(p_list, tkbool, self_, self_root):
   """ Creates a radar display like graph of a given target"""
   # (update to multiple contacts in future)
-  fig = plt.figure(dpi=200)
+  fig = plt.figure()
   ax = plt.axes()
   ax.set_facecolor('#131337')
+  plt.gca().set_axis_off()
 
   #plt.grid(b = None)
   for i in [1.5, 3, 6, 10]:
@@ -27,7 +35,6 @@ def plot_radar(p_list):
   # this is just creating background 
   theta = np.pi / 2
   for i in range(0, 360, 10):
-    
     ax.annotate(f"{i}", (np.cos(theta) * 10.6, np.sin(theta) * 10.6 - 0.3), color = "green", ha='center', fontsize=8)
     theta = theta - (np.pi * 2 / (360 / 10))
   plt.xticks([])
@@ -40,9 +47,16 @@ def plot_radar(p_list):
     plt.scatter(x,y, s = 9, color = "red", marker='s')
     ax.annotate(f"UC {(z)} m", (x + 0.2, y), color = "red", ha = "left", fontsize = 3.5)
   # this is just creating the background
+
+  if tkbool:
+    self_.canvas = FigureCanvasTkAgg(fig, master=self_root)
+    self_.canvas.draw()
+    self_.canvas.get_tk_widget().pack(side = tk.BOTTOM, fill = tk.BOTH, expand = True)
+  else:
+    plt.show()
   
   
-def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time):
+def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time, tkbool = False, frame = None):
   """ Function that generates a graphical representation of the target's location 
       and velocity vector as well as the missile travel path and interception for a laser like solution
   """
@@ -77,9 +91,14 @@ def graph_solution(missile_speed, phi, theta, deltaXYZ_target, xyz_target, time)
   ax.plot3D(mxline, myline, mzline, 'red', label='Missile Trajectory')
   
   ax.legend()
-  plt.show()
+  if tkbool:
+    frame.canvas = FigureCanvasTkAgg(fig, master=frame)
+    frame.canvas.draw()
+    frame.canvas.get_tk_widget().pack(side = tk.BOTTOM, fill = tk.BOTH, expand = 1)
+  else:
+    plt.show()
 
-def plot_ballistic_trajectory(initial_missile_speed, phi, theta, deltaXYZ_target, xyz_target, time):
+def plot_ballistic_trajectory(initial_missile_speed, phi, theta, deltaXYZ_target, xyz_target, time, tkbool = False, frame = None):
   """ Function that generates a graphical representation of the target's location 
       and velocity vector as well as the missile travel path and interception for a ballistic and parabolic like solution
   """
@@ -113,4 +132,10 @@ def plot_ballistic_trajectory(initial_missile_speed, phi, theta, deltaXYZ_target
   ax.plot3D(mxline, myline, z_parabola, 'red', label='Missile Trajectory')
 
   ax.legend()
-  plt.show()
+  
+  if tkbool:
+    canvas = FigureCanvasTkAgg(fig, master=frame)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side = tk.BOTTOM, fill = tk.BOTH, expand = True)
+  else:
+    plt.show()
