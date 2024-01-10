@@ -5,7 +5,8 @@ Fly_Swatter is a simulation of a fire control computer for intercepting a mid-ai
 Examples contains a working example of the computer. 
 
 
-![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/4ad88837-db35-4420-910a-bf36f36c2b5b)
+![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/4dd92171-10b1-482c-985e-0968c5dcc30e)
+
 
 
 ![image](https://github.com/pvalle6/Fly_Swatter/assets/103479060/6501e363-5df1-4e3e-8a6b-2d28f2fcfab7)
