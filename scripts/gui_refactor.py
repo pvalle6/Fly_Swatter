@@ -201,16 +201,22 @@ class GUI_App:
         
         self.man_label = tk.Label(self.manager_frame, text = "Contact Manager")
         self.man_label.grid(row = 0, column = 0)
-        
-        self.ct_remove = tk.Button(self.manager_frame, text = "Remove Contact")
-        self.ct_remove.grid(row = 1, column = 0)
-        
-        self.ct_add = tk.Button(self.manager_frame, text = "Add Contact")
-        self.ct_add.grid(row = 2, column = 0)
 
+        self.target_select_r = tk.IntVar(value = 0)
+        self.tar_spin_remove = tk.Spinbox(self.manager_frame,  textvariable = self.target_select_r, from_ = 0, to = self.totaltar)
+        self.tar_spin_remove.grid(row = 0, column = 0)
+        
+        self.ct_remove = tk.Button(self.manager_frame, text = "Remove Contact", command = self.remove_ct)
+        self.ct_remove.grid(row = 2, column = 0)
+        
+        self.ct_add = tk.Button(self.manager_frame, text = "Add Contact", command = self.add_ct_db)
+        self.ct_add.grid(row = 3, column = 0)
+
+        
         self.ct_name_l = tk.Label(self.manager_frame, text = "Name")
         self.ct_name_e = tk.Entry(self.manager_frame)
 
+        self.ct_bearing_l = tk.Label(self.manager_frame, text = "BEARING")
         self.ct_phi_l = tk.Label(self.manager_frame, text = "Phi")
         self.ct_phi_e = tk.Entry(self.manager_frame)
         self.ct_theta_l = tk.Label(self.manager_frame, text = "Theta")
@@ -218,17 +224,55 @@ class GUI_App:
         self.ct_rho_l = tk.Label(self.manager_frame, text = "Rho")
         self.ct_rho_e = tk.Entry(self.manager_frame)
 
+        self.ct_heading_l = tk.Label(self.manager_frame, text = "HEADING")
+        self.ct_phi_h_l = tk.Label(self.manager_frame, text = "Phi")
+        self.ct_phi_h_e = tk.Entry(self.manager_frame)
+        self.ct_theta_h_l = tk.Label(self.manager_frame, text = "Theta")
+        self.ct_theta_h_e = tk.Entry(self.manager_frame)
+        self.ct_rho_h_l = tk.Label(self.manager_frame, text = "Speed")
+        self.ct_rho_h_e = tk.Entry(self.manager_frame)
         
-        self.ct_name_l.grid(row = 3, column = 0)
-        self.ct_name_e.grid(row = 4, column = 0)
-        self.ct_phi_l.grid(row = 5, column = 0)
-        self.ct_phi_e.grid(row = 6, column = 0) 
-        self.ct_theta_l.grid(row = 7, column = 0) 
-        self.ct_theta_e.grid(row = 8, column = 0)
-        self.ct_rho_l.grid(row = 9, column = 0)
-        self.ct_rho_e.grid(row = 10, column = 0)
+        self.ct_name_l.grid(row = 4, column = 0)
+        self.ct_name_e.grid(row = 5, column = 0)
+
+        self.ct_bearing_l.grid(row = 6, column = 0)
+        self.ct_phi_l.grid(row = 7, column = 0)
+        self.ct_phi_e.grid(row = 8, column = 0) 
+        self.ct_theta_l.grid(row = 9, column = 0) 
+        self.ct_theta_e.grid(row = 10, column = 0)
+        self.ct_rho_l.grid(row = 11, column = 0)
+        self.ct_rho_e.grid(row = 12, column = 0)
+
+        self.ct_heading_l.grid(row = 13, column = 0)
+
+        self.ct_phi_h_l.grid(row = 14, column = 0)
+        self.ct_phi_h_e.grid(row = 15, column = 0) 
+        self.ct_theta_h_l.grid(row = 16, column = 0) 
+        self.ct_theta_h_e.grid(row = 17, column = 0)
+        self.ct_rho_h_l.grid(row = 18, column = 0)
+        self.ct_rho_h_e.grid(row = 19, column = 0)
         
         ## going to make a self.ct_last_loc object for this 
+    def add_ct_db(self):
+        self.new_loc = radar.target_loc(phi = float(self.ct_phi_e.get()),
+                                        theta = float(self.ct_theta_e.get()), r = float(self.ct_rho_e.get()), time_spot = time.time())
+        self.new_vel = radar.velocity_vector(phi = float(self.ct_phi_h_e.get()), theta = float(self.ct_theta_h_e.get()),
+                                             speed = float(self.ct_rho_h_e.get()))
+        
+        self.new_ct = radar.contact(name = self.ct_phi_e.get(), last_time = time.time(), last_loc = self.new_loc,
+                                    vel_vector = self.new_vel, status = "usr_added")
+        
+        self.main_db.contacts.append(self.new_ct)
+        print(f"NEW CT \n NAME: {self.ct_name_e.get()} \n BEARING ")
+        self.plot_radar()
+        self.update_var_labels()
+        self.update_engage_info()
+
+    def remove_ct(self):
+        self.main_db.contacts.pop(self.target_select_r.get())
+        self.plot_radar()
+        self.update_var_labels()
+        self.update_engage_info()
         
     def debug(self):
         self.debug_window.deiconify()
@@ -245,6 +289,7 @@ class GUI_App:
         self.plot_radar()
         self.update_var_labels()
         
+        
     def update_var_labels(self):
         # label for number of contacts
         # NUMBER OF TARGETS LABEL
@@ -257,6 +302,9 @@ class GUI_App:
         self.tar_spin = tk.Spinbox(self.tar_con_butt,  textvariable = self.target_select, from_ = 0, to = self.totaltar)
         self.tar_spin.grid(row = 1, column = 0)
 
+        self.tar_spin_remove.grid_forget()
+        self.tar_spin_remove = tk.Spinbox(self.manager_frame,  textvariable = self.target_select_r, from_ = 0, to = self.totaltar)
+        self.tar_spin_remove.grid(row = 0, column = 0)
 
         self.target_report_name_two.grid_forget()
         self.target_report_azimuth_two.grid_forget()
@@ -277,6 +325,7 @@ class GUI_App:
         self.target_report_distance_two.grid(row = 2, column = 1, pady =10)
         self.target_report_speed_two.grid(row = 3, column = 1, pady =10)
 
+        self.totaltar = len(self.main_db.contacts)
     def update_engage_info(self):
         self.phi_sol.grid_forget()
         self.theta_sol.grid_forget()
@@ -291,7 +340,8 @@ class GUI_App:
         self.time_sol.grid(row = 2, column = 0)
         self.engage_report_frame.grid(row = 2, column = 0)
         print("")
-        
+
+        self.totaltar = len(self.main_db.contacts)
     def debug_args(self):
         self.se_seed = self.se_seed_e.get()
         self.fi_seed = self.fire_seed_e.get()
